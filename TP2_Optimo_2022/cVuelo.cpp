@@ -13,6 +13,7 @@ cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, c
     pasajeros = new cListaPasajero();
     this->partida = new cFecha(*partida_);
     this->aterrizaje = new cFecha(*aterrizaje_);
+    this->en_horario = false;
 }
 
 cVuelo::~cVuelo() {
@@ -24,7 +25,7 @@ cVuelo::~cVuelo() {
 void cVuelo::verPasajero(string DNI) {
     
     int pos = pasajeros->buscar(DNI);
-    //imprimir con sobrecarga de << pasajeros[pos];
+    //pasajeros->
 
 }
 
@@ -47,25 +48,39 @@ unsigned int cVuelo::getCantidadPasajeros()
     return pasajeros->CantidadActual;
 }
 
-bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto)
+bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto, cFecha* fecha)
 {
     try {
         avion->chequearCargaMaxima(this);
         avion->chequearCapacidadMaxima(this);
     }
-    catch (...) {
-
+    catch (exception* e) {
+        delete e;
+        return false;
     }
     avion->pedirPermisoDespegue(aeropuerto); //TODO try catch
     avion->despegar();
+    verificarhorario(partida,fecha);
     aeropuerto->QuitarAvion(avion);
     return true;
 }
 
-bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto)
+void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
+    if (*fecha < *mi_hora || *fecha == *mi_hora)
+        en_horario = true;
+}
+
+bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)
 {
-    avion->pedirPermisoAterrizaje(aeropuerto); //TODO try catch
+    try {
+        avion->pedirPermisoAterrizaje(aeropuerto);
+    }
+    catch (exception* e) {
+        delete e;
+        return false;
+    }
     avion->aterrizar();
+    verificarhorario(aterrizaje, fecha);
     aeropuerto->AgregarAvion(avion);
     return true;
 }
