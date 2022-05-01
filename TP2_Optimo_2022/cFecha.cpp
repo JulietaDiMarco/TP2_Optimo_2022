@@ -3,29 +3,7 @@
 #pragma warning(disable:4996)
 #define _CRT_SECURE_NO_WARNINGS
 
-/**
- * cFecha implementation
- */
-
-cFecha::~cFecha() {
-	/*
-	//verifico que las fechas que recibo no sean null ni estén incompletas
-	if ((inicio != NULL && fin != NULL) && inicio->FechaCompleta() && fin->FechaCompleta())
-	{
-		//verifico que fecha fin > fecha inicio con operador sobrecargado
-		if (*inicio > *fin)
-			throw exception("Las fechas no son válidas");
-		else
-		{
-			dif = difftime(aux_fin, aux_inicio) / (86400); //calculo la diferencia de tiempo en segundos, transforma a dias,  y la devuelvo
-			return dif;
-		}
-	}
-	else throw exception("Fechas incompletas");
-	*/
-}
-
-cFecha::cFecha() { //este pone la fecha de hoy como default
+cFecha::cFecha() {
 	fecha.tm_hour = 0;
 	fecha.tm_min = 0;
 	fecha.tm_sec = 0;
@@ -51,23 +29,41 @@ cFecha::cFecha(int d, int m, int a)
 	fecha.tm_isdst = 0;
 }
 
+cFecha::cFecha(int d, int m, int a, int hs, int min) {
+
+	fecha.tm_hour = hs;
+	fecha.tm_min = min;
+	fecha.tm_sec = 0;
+	fecha.tm_mday = d;
+	fecha.tm_mon = m - 1;
+	fecha.tm_year = a - 1900;
+	fecha.tm_wday = 0;
+	fecha.tm_yday = 0;
+	fecha.tm_isdst = 0;
+}
+
+cFecha::~cFecha() {
+}
+
 int cFecha::DiasEntreFechas(cFecha * inicio, cFecha * fin)
 {
 	int dif = 0;
-	time_t aux_inicio = mktime(&(inicio->fecha)); //paso las fechas  a segundos
+	time_t aux_inicio = mktime(&(inicio->fecha)); //paso las fechas a segundos
 	time_t aux_fin = mktime(&(fin->fecha));
-	return 0; //Falta que retorne algo
-}
 
-/**
- * @param dia
- * @param mes
- * @param anio
- * @param hora
- * @param minutos
- */
-cFecha::cFecha(int dia, int mes, int anio, int hora, int minutos) {
-
+	//verifico que las fechas que recibo no sean null ni estén incompletas
+	if ((inicio != NULL && fin != NULL) && inicio->FechaCompleta() && fin->FechaCompleta())
+	{
+		//verifico que fecha fin > fecha inicio con operador sobrecargado
+		if (*inicio > *fin)
+			throw exception("Las fechas no son válidas");
+		else
+		{
+			dif = difftime(aux_fin, aux_inicio) / (60); //calculo la diferencia de tiempo en segundos, transforma a minutos, y la devuelvo
+			return dif;
+		}
+	}
+	else throw exception("Fechas incompletas");
 }
 
 bool cFecha::IsOverlapped(cFecha* inicio1, cFecha* fin1, cFecha* inicio2, cFecha* fin2)
@@ -106,4 +102,13 @@ string cFecha::To_string()
 
 void cFecha::ImprimirFecha() {
 	cout << To_string() << endl;;
+}
+
+bool cFecha::EstaAtrasado(cFecha* fecha_estimada, cFecha* fecha_vuelo)
+{
+	//Podemos utilizar la sobrecarga < para deteminar si el vuelo esta atrasado
+	if (*fecha_estimada < *fecha_vuelo)
+		return true;
+	else
+		return false;
 }

@@ -7,4 +7,44 @@
 using namespace std;
 
 enum class eDestino{IGUAZU=0, MENDOZA, BARILOCHE, SALTA, JUJUY};
+
 enum class eTramo{Arribo=0, Partida=1};
+
+string eDestinoToString(eDestino destino) {
+	switch (destino)
+	{
+		case eDestino::IGUAZU:
+			return "Iguazu";
+			break;
+		case eDestino::MENDOZA:
+			return "Mendoza";
+			break;
+		case eDestino::BARILOCHE:
+			return "Bariloche";
+			break;
+		case eDestino::SALTA:
+			return "Salta";
+			break;
+		case eDestino::JUJUY:
+			return "Jujuy";
+			break;
+		default:
+			return "";
+			break;
+	}
+}
+
+string eTramoToString(eTramo tramo) {
+	switch (tramo)
+	{
+	case eTramo::Arribo:
+		return "Arribo";
+		break;
+	case eTramo::Partida:
+		return "Partida";
+		break;
+	default:
+		return "";
+		break;
+	}
+}

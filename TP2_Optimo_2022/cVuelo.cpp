@@ -1,9 +1,5 @@
 #include "cVuelo.h"
 #include "cAvion.h"
-#include "cAeropuerto.h"
-/**
- * cVuelo implementation
- */
 
 unsigned int cVuelo::Contador = 0;
 
@@ -27,16 +23,10 @@ void cVuelo::verPasajero(string DNI) {
 
 }
 
-/**
- * @return string
- */
 string cVuelo::tostring() {
     return "";
 }
 
-/**
- * @return void
- */
 void cVuelo::imprimir() {
     return;
 }
@@ -44,7 +34,7 @@ void cVuelo::imprimir() {
 
 float cVuelo::getpesoTotalEquipajes()
 {
-    pasajeros->getpesoTotalEquipajes();
+    return pasajeros->getpesoTotalEquipajes();
 }
 
 bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto)

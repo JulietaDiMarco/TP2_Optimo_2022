@@ -28,6 +28,15 @@ public:
         bool QuitarAvion(cAvion* avion_);
         bool AgregarAvion(cAvion* avion_);
 
+        
+        /// <summary>
+        /// Determina la cantidad total de pasajeros que volaron en
+        /// una determina fecha.
+        /// </summary>
+        /// <param name="fecha">Fecha para hacer la estadistica</param>
+        /// <returns>Cantidad total de pasajeros</returns>
+        int CantPasajerosVolaron(cFecha fecha);
+
     private: 
         const string idAeropuerto;
         int capacidad;

@@ -3,10 +3,6 @@
 #define PESO_PROMEDIO 75
 #include "cAeropuerto.h" 
 
-/**
- * cAvion implementation
- */
-
 unsigned int cAvion::cantidad_aviones = 0;
 
 cAvion::cAvion(int cantidadPasajeros_, int cantidadActual_, bool permisoAterrizaje_, bool permisoDespegue_, float pesoMaximo_, bool volando_):id(to_string(cantidad_aviones)) {

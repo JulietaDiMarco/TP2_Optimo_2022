@@ -1,5 +1,5 @@
-#include "cAeropuerto.h"
 
+#include "cAeropuerto.h"
 
 cAeropuerto::cAeropuerto(string idAeropuerto_, int capacidad_):idAeropuerto(idAeropuerto_) {
     this->capacidad = capacidad_;
@@ -83,4 +83,13 @@ bool cAeropuerto::QuitarAvion(cAvion* avion_)
     cAvion* auxiliar;
     auxiliar = aviones->quitar(avion_);
     return auxiliar != NULL; //si auxiliar es != a NULL significa que lo encontré y lo quité de la lista
+}
+
+int cAeropuerto::CantPasajerosVolaron(cFecha fecha)
+{
+    //TODO
+    for (int i = 0; i < 25/*getCantidadActual*/; i++)
+    {
+        //vuelos[i].
+    }
 }
