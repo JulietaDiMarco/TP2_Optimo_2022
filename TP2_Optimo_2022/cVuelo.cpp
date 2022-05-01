@@ -10,7 +10,7 @@ cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, c
     this->estado = estado_;
     this->destino = destino_;
     this->tramo = tramo_;
-    pasajeros = new cListaPasajero();
+    pasajeros = new cListaPasajero(avion->capacidad_maxima); //la lista tiene un tamaño máximo de la capacidad máxima del avion
     this->partida = new cFecha(*partida_);
     this->aterrizaje = new cFecha(*aterrizaje_);
     this->en_horario = false;
@@ -25,7 +25,8 @@ cVuelo::~cVuelo() {
 void cVuelo::verPasajero(string DNI) {
     
     int pos = pasajeros->buscar(DNI);
-    //pasajeros->
+    cPasajero* mi_pasajero = pasajeros->buscar(pos);
+    mi_pasajero->imprimir();
 
 }
 
@@ -68,6 +69,25 @@ bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto, cFecha* fecha)
 void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
     if (*fecha < *mi_hora || *fecha == *mi_hora)
         en_horario = true;
+}
+
+bool cVuelo::AgregarPasajero(cPasajero* pasajero)
+{
+    return pasajeros->agregar(pasajero);
+}
+
+bool cVuelo::EliminarPasajero(cPasajero* pasajero)
+{
+    return pasajeros->quitar(pasajero)!=NULL;
+}
+
+bool cVuelo::CambiarPasajero(cPasajero* eliminado, cPasajero* agregado)
+{
+    if (pasajeros->quitar(eliminado)) {
+        return pasajeros->agregar(agregado);
+    }
+    else
+        return false;
 }
 
 bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)

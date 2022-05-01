@@ -33,6 +33,10 @@ public:
 
     void verificarhorario(cFecha* mi_hora, cFecha* fecha);
 
+    bool AgregarPasajero(cPasajero* pasajero);
+    bool EliminarPasajero(cPasajero* pasajero);
+    bool CambiarPasajero(cPasajero* eliminado, cPasajero* agregado);
+
 private:
     const string nroVuelo;
     bool estado; //true si esta volando, false si esta en tierra
