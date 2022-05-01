@@ -6,9 +6,11 @@
 
 class cAvion;
 class cAeropuerto;
+
 class cVuelo {
     friend class cAeropuerto;
     friend class cAvion;
+
 public:
 
     cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, cFecha* partida_, cFecha* aterrizaje_);
@@ -22,6 +24,7 @@ public:
     string get_nroVuelo() { return this->nroVuelo; }
     bool getEstado() { return this->estado; }
     eDestino getDestino() { return this->destino; }
+    eTramo getTramo() { return this->tramo; };
     float getpesoTotalEquipajes();
     unsigned int getCantidadPasajeros();
 

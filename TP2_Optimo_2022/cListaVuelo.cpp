@@ -140,17 +140,16 @@ int cListaVuelo::buscar(cVuelo* ptr_Vuelo) {
 }
 #pragma endregion
 
-
-
 void cListaVuelo::imprimir() {
-	cout << "Mi Listado: " << endl;
+	string text = "";
+	text += "\nMi Listado:";
 	for (unsigned int i = 0; i < CantidadActual; i++)
 		if (this->Vuelos[i] != NULL) {
-			cout << this->Vuelos[i]->get_nroVuelo() << " " <<
-				this->Vuelos[i]->getDestino() << " " <<
-				this->Vuelos[i]->getEstado() << " " << endl;
+			text += "\nNro Vuelo: " + Vuelos[i]->get_nroVuelo();
+			text += "| Destino: " + eDestinoToString(Vuelos[i]->getDestino());
+			text += "| Tramo: " + eTramoToString(Vuelos[i]->getTramo());
 		}
-	cout << endl;
+	cout << text << endl;
 }
 
 cVuelo* cListaVuelo::operator[](int pos)
