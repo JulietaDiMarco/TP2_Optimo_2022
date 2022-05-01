@@ -5,6 +5,7 @@
 #include "gbl.h"
 
 class cAvion;
+class cAeropuerto;
 class cVuelo {
 
     friend class cAvion;
@@ -23,8 +24,8 @@ public:
     eDestino getDestino() { return this->destino; }
     float getpesoTotalEquipajes();
 
-    bool IniciarDespegue();
-    bool IniciarAterrizaje();
+    bool IniciarDespegue(cAeropuerto * aeropuerto);
+    bool IniciarAterrizaje(cAeropuerto* aeropuerto);
 
 private:
     const string nroVuelo;

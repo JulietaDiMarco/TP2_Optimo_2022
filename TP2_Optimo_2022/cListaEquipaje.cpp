@@ -16,7 +16,7 @@ cListaEquipaje::~cListaEquipaje() {
 				delete this->Equipajes[i];
 	}
 	delete[] this->Equipajes;
-	cEquipaje::setCantidadTotal(0);
+	CantidadActual = 0;
 }
 
 bool cListaEquipaje::agregar(cEquipaje* nuevoEquipaje) {
@@ -122,7 +122,7 @@ int cListaEquipaje::buscar(cEquipaje* ptr_Equipaje) {
 #pragma region Metodos_Filtrar
 cEquipaje** cListaEquipaje::filtrar(float peso) {
 	cEquipaje** aux = NULL;
-	aux = new cEquipaje * [cEquipaje::getCantidadActual()];
+	aux = new cEquipaje * [CantidadActual];
 
 	if (aux != NULL) {
 		for (int i = 0; i < CantidadActual; i++)

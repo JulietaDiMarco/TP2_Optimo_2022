@@ -2,15 +2,17 @@
 #define _CAEROPUERTO_H
 
 #include "cListaAvion.h"
+#include "cListaVuelo.h"
 
-class cAeropuerto {
-    public: 
+class cAeropuerto {    
+    friend class cAvion;
+public: 
     
         cAeropuerto(string idAeropuerto_, int capacidad_);
         ~cAeropuerto();
     
-        bool darPermisoAterrizaje(cAvion& a);
-        bool darPermisoDespegue(cAvion& a);
+        bool darPermisoAterrizaje();
+        bool darPermisoDespegue();
 
         bool chequearCapacidadAvion(cAvion* a, cVuelo* v);
 
@@ -19,10 +21,11 @@ class cAeropuerto {
 
         string getIdAeropuerto() { return this->idAeropuerto; }
         int getCapacidad() { return this->capacidad; }
-        //unsigned int getAvionesEstacionados() { return this->avionesEstacionados; }
+        unsigned int getAvionesEstacionados() { return aviones->getCantidadActual(); }
 
         int avionesEstacionados();
         bool pistaDespejada();
+        bool QuitarAvion(cAvion* avion_);
 
     private: 
         const string idAeropuerto;
@@ -32,4 +35,4 @@ class cAeropuerto {
 
 };
 
-#endif //_CAEROPUERTO_H
+#endif 

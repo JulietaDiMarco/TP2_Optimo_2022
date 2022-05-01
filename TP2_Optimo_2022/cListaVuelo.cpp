@@ -130,7 +130,7 @@ int cListaVuelo::buscar(cVuelo* ptr_Vuelo) {
 #pragma region Metodos_Filtrar
 cVuelo** cListaVuelo::filtrar(float peso) {
 	cVuelo** Aux = NULL;
-	Aux = new cVuelo * [cVuelo::getCantidadActual()];
+	Aux = new cVuelo * [CantidadActual];
 
 	if (Aux != NULL) {
 		for (int i = 0; i < CantidadActual; i++)

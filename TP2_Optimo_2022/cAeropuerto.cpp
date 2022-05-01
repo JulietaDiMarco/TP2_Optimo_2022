@@ -14,40 +14,24 @@ cAeropuerto::~cAeropuerto() {
 /**
  * chequea si esta volando doy permiso de aterrizaje y sino le doy permiso de despegar
  */
-bool cAeropuerto::darPermisoAterrizaje(cAvion& a){
-    if (a.getVolando() && pistaDespejada()) {
-        a.setPermisoAterrizaje(true);
-        a.aterrizar();
+bool cAeropuerto::darPermisoAterrizaje(){
+
+    unsigned int CA = aviones->getCantidadActual();
+    if (CA < capacidad)
         return true;
-    }
-    else if (a.getVolando() && !pistaDespejada()) {
-        return false;
-    }
+    else
+        throw new exception("Hangar lleno. No se permite el aterrizaje");
 }
 
-bool cAeropuerto::darPermisoDespegue(cAvion& a) {
+bool cAeropuerto::darPermisoDespegue() {
 
-    if (!a.getVolando() && pistaDespejada()) {
-        if (a.chequearPesoEquipaje() && a.chequearCapacidadAvion()) {
-            a.setPermisoDespegue(true);
-            a.despegar();
-            return true;
-        }
-    }
-    return false;
+    unsigned int CA = aviones->getCantidadActual();
+    if (CA > 0)
+        return true;
+    else
+        throw new exception("No hay aviones disponibles para realizar el despegue.");
 }
 
-bool cAeropuerto::chequearCapacidadAvion(cAvion* a, cVuelo* v)
-{
-    if (a != NULL) {
-        //float auxPeso = a->getPesoMaximo();
-        float auxPeso = 0;
-        auxPeso = (a->getCantidadActual() + 4) * 75 + a->getCantidadActual() * v->getPesoValijas();           //aca le tengo que sumar la cantidad de pasajeros por el peso de sus valijas
-        if (auxPeso < a->getPesoMaximo()) { return true; }
-        else { return false; }
-    }
-    return false;
-}
 
 /**
  * @return bool
@@ -92,4 +76,11 @@ bool cAeropuerto::pistaDespejada()
         }
     }    
     return true;
+}
+
+bool cAeropuerto::QuitarAvion(cAvion* avion_)
+{
+    cAvion* auxiliar;
+    auxiliar = aviones->quitar(avion_);
+    return auxiliar != NULL; //si auxiliar es != a NULL significa que lo encontré y lo quité de la lista
 }
