@@ -3,16 +3,18 @@
 #include "gbl.h"
 #include "cVuelo.h"
 
+class cAeropuerto;
+
 class cAvion {
 
 public: 
     cAvion(int cantidadPasajeros_, int cantidadActual_, bool permisoAterrizaje_, bool permisoDespegue_, float pesoMaximo_, bool volando_);
     ~cAvion();
     
-    bool despegar();    
-    bool aterrizar();
-    bool pedirPermisoAterrizaje();
-    bool pedirPermisoDespegue(cVuelo* vuelo);
+    void despegar();    
+    void aterrizar();
+    bool pedirPermisoAterrizaje(cAeropuerto* aeropuerto);
+    bool pedirPermisoDespegue(cAeropuerto* aeropuerto);
     float getPesoTotalEquipaje();
     bool chequearCapacidadAvion();
     void chequearCargaMaxima(cVuelo* vuelo);

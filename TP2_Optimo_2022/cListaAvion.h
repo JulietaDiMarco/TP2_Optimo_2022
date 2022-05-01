@@ -8,6 +8,8 @@ class cListaAvion
 private:
 	bool eliminarNodos;
 	cAvion** Aviones;
+	unsigned int CantidadActual;
+	unsigned int CantidadMaxima;
 
 public:
 	cListaAvion(unsigned int longitud = L_MAX, bool eliminar = false);
@@ -24,6 +26,7 @@ public:
 	cAvion* buscar(int pos);
 	int buscar(cAvion* ptr_Avion);
 	void imprimir();
+	unsigned int getCantidadActual();
 
 
 

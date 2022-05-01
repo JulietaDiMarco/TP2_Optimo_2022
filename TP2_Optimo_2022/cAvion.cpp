@@ -1,7 +1,7 @@
 #include "cAvion.h"
 #define N_TRIPULANTES 4
 #define PESO_PROMEDIO 75
-// #include "cAeropuerto.h" 
+#include "cAeropuerto.h" 
 
 unsigned int cAvion::cantidad_aviones = 0;
 
@@ -17,19 +17,17 @@ cAvion::~cAvion() {
 /**
  * @return bool
  */
-bool cAvion::despegar() {
+void cAvion::despegar() {
     
-    if (permisoDespegue) {
-        setVolando(true); // cambio el estado del avion y lo paso a volando
-        return true;
-    }else
-    return false;
+    if (volando)
+        throw new exception("El avion ya se encuentra en el aire");
+    volando = true;
 }
 
 /**
  * @return bool
  */
-bool cAvion::aterrizar() {
+void cAvion::aterrizar() {
     
     if (permisoAterrizaje) {
 
@@ -43,22 +41,23 @@ bool cAvion::aterrizar() {
 /**
  * @return bool
  */
-bool cAvion::pedirPermisoAterrizaje() {
-
-    if (getVolando()) {
-        return true;
+bool cAvion::pedirPermisoAterrizaje(cAeropuerto* aeropuerto) {
+    bool permiso;
+    try {
+        permiso = aeropuerto->darPermisoAterrizaje();
     }
-     return false;
+    catch (exception * e) {
+        string mensaje = e->what();
+        delete e;
+        //throw new exception(mensaje); #TODO
+    }
 }
 
 
 
-bool cAvion::pedirPermisoDespegue(cVuelo* vuelo) {
+bool cAvion::pedirPermisoDespegue(cAeropuerto* aeropuerto) {
   
-    if (getVolando()) {
-        return true;
-    }
-     return false;
+    return aeropuerto->darPermisoDespegue(); //TODO: control de excepciones
 }
 
 /**

@@ -37,8 +37,21 @@ float cVuelo::getpesoTotalEquipajes()
     return pasajeros->getpesoTotalEquipajes();
 }
 
-bool cVuelo::IniciarDespegue()
+bool cVuelo::IniciarDespegue(cAeropuerto* aeropuerto)
 {
-    avion->pedirPermisoDespegue(this);
+    try {
+        avion->chequearCargaMaxima(this);
+    }
+    catch (...) {
+
+    }
+    avion->pedirPermisoDespegue(aeropuerto); //TODO try catch
+    avion->despegar();
+    aeropuerto->QuitarAvion(avion);
+    return true;
+}
+
+bool cVuelo::IniciarAterrizaje(cAeropuerto* aeropuerto)
+{
     return false;
 }
