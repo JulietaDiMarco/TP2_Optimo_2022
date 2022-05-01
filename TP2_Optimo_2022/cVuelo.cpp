@@ -41,6 +41,7 @@ bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto)
 {
     try {
         avion->chequearCargaMaxima(this);
+        avion->chequearCapacidadMaxima(this);
     }
     catch (...) {
 

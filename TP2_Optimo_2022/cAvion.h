@@ -16,7 +16,7 @@ public:
     bool pedirPermisoAterrizaje(cAeropuerto* aeropuerto);
     bool pedirPermisoDespegue(cAeropuerto* aeropuerto);
     float getPesoTotalEquipaje();
-    bool chequearCapacidadAvion();
+    void chequearCapacidadMaxima(cVuelo* vuelo);
     void chequearCargaMaxima(cVuelo* vuelo);
 
     bool conVueloAsignado();
@@ -32,6 +32,7 @@ public:
 private: 
     const string id;
     float pesoMaximo;
+    int capacidad_maxima;
     bool volando; //avion puede estar en tierra o en vuelo
     static unsigned int cantidad_aviones;
     
