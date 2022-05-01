@@ -31,6 +31,11 @@ string cPasajero::getApellido() {
     return this->apellido;
 }
 
+float cPasajero::getPesoTotal()
+{
+    return valijas->getpesototal();
+}
+
 
 /**
  chequear

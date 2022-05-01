@@ -26,7 +26,7 @@ public:
 	cAvion* buscar(int pos);
 	int buscar(cAvion* ptr_Avion);
 	void imprimir();
-	unsigned int getCantidadActual();
+	unsigned int getCantidadActual() { return CantidadActual; };
 
 };
 
