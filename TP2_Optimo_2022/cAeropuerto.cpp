@@ -63,26 +63,18 @@ int cAeropuerto::avionesEstacionados()
     return cantAviones;
 }
 
-bool cAeropuerto::pistaDespejada()
-{
-    for (int i = 0; i < capacidad; i++) {
-        cAvion* aux = aviones->buscar(i); // aca estuve probando varias cosas, es a chequear
-        if (!aux->getVolando()) { // si el avion no esta volando, la pista no esta despejada
-            delete aux;
-            return false;
-        }
-        else {
-            delete aux;
-        }
-    }    
-    return true;
-}
+
 
 bool cAeropuerto::QuitarAvion(cAvion* avion_)
 {
     cAvion* auxiliar;
     auxiliar = aviones->quitar(avion_);
     return auxiliar != NULL; //si auxiliar es != a NULL significa que lo encontré y lo quité de la lista
+}
+
+bool cAeropuerto::AgregarAvion(cAvion* avion_)
+{
+    return aviones->agregar(avion_); //TODO check
 }
 
 int cAeropuerto::CantPasajerosVolaron(cFecha* fecha)

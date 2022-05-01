@@ -1,6 +1,7 @@
 #ifndef _CAVION_H
 #define _CAVION_H
-#include "gbl.h"
+#pragma once
+//#include "gbl.h"
 #include "cVuelo.h"
 
 class cAeropuerto;

@@ -25,7 +25,6 @@ public:
         unsigned int getAvionesEstacionados() { return aviones->getCantidadActual(); }
 
         int avionesEstacionados();
-        bool pistaDespejada();
         bool QuitarAvion(cAvion* avion_);
         bool AgregarAvion(cAvion* avion_);
 
