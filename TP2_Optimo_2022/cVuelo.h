@@ -23,6 +23,7 @@ public:
     bool getEstado() { return this->estado; }
     eDestino getDestino() { return this->destino; }
     float getpesoTotalEquipajes();
+    unsigned int getCantidadPasajeros();
 
     bool RealizarDespegue(cAeropuerto * aeropuerto);
     bool RealizarAterrizaje(cAeropuerto* aeropuerto);

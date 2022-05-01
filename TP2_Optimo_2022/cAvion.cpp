@@ -63,7 +63,8 @@ bool cAvion::pedirPermisoDespegue(cAeropuerto* aeropuerto) {
 
 void cAvion::chequearCapacidadMaxima(cVuelo* vuelo)
 {
-    if(capacidad_maxima<vuelo->get)
+    if (capacidad_maxima < vuelo->getCantidadPasajeros())
+        throw new exception("La cantidad de pasajeros supera la capacidad máxima del avión.");
 }
 
 /**

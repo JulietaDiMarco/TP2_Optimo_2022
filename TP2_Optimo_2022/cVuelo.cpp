@@ -1,5 +1,6 @@
 #include "cVuelo.h"
 #include "cAvion.h"
+#include "cAeropuerto.h"
 
 unsigned int cVuelo::Contador = 0;
 
@@ -35,6 +36,11 @@ void cVuelo::imprimir() {
 float cVuelo::getpesoTotalEquipajes()
 {
     return pasajeros->getpesoTotalEquipajes();
+}
+
+unsigned int cVuelo::getCantidadPasajeros()
+{
+    return pasajeros->CantidadActual;
 }
 
 bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto)

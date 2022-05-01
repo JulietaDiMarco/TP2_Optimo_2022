@@ -4,6 +4,7 @@
 #include "cFecha.h"
 
 class cPasajero {
+    friend class cListaPasajeros;
 
 public: 
     
