@@ -39,21 +39,15 @@ void cAvion::aterrizar() {
  */
 bool cAvion::pedirPermisoAterrizaje(cAeropuerto* aeropuerto) {
     bool permiso;
-    try {
-        permiso = aeropuerto->darPermisoAterrizaje();
-    }
-    catch (exception * e) {
-        string mensaje = e->what();
-        delete e;
-        //throw new exception(mensaje); #TODO
-    }
+    permiso = aeropuerto->darPermisoAterrizaje();
+    return permiso;
 }
 
 
 
 bool cAvion::pedirPermisoDespegue(cAeropuerto* aeropuerto) {
   
-    return aeropuerto->darPermisoDespegue(); //TODO: control de excepciones
+    return aeropuerto->darPermisoDespegue(); 
 }
 
 /**

@@ -27,7 +27,6 @@ public:
 	int buscar(string id);
 	cVuelo* buscar(int pos);
 	int buscar(cVuelo* ptr_Vuelo);
-	cVuelo** filtrar(float peso);
 
 	void imprimir();
 

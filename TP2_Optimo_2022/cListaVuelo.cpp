@@ -140,19 +140,7 @@ int cListaVuelo::buscar(cVuelo* ptr_Vuelo) {
 }
 #pragma endregion
 
-#pragma region Metodos_Filtrar
-cVuelo** cListaVuelo::filtrar(float peso) {
-	cVuelo** Aux = NULL;
-	Aux = new cVuelo * [CantidadActual];
 
-	if (Aux != NULL) {
-		for (int i = 0; i < CantidadActual; i++)
-			if (this->Vuelos[i] != NULL && this->Vuelos[i]->getPesoValijas() == peso)
-				Aux[i] = this->Vuelos[i];
-	}
-	return Aux;
-}
-#pragma endregion
 
 void cListaVuelo::imprimir() {
 	cout << "Mi Listado: " << endl;

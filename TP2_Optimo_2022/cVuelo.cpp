@@ -25,7 +25,7 @@ cVuelo::~cVuelo() {
 void cVuelo::verPasajero(string DNI) {
     
     int pos = pasajeros->buscar(DNI);
-    //imprimir con sobrecarga de << pasajeros[pos];
+    //pasajeros->
 
 }
 
@@ -54,8 +54,9 @@ bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto, cFecha* fecha)
         avion->chequearCargaMaxima(this);
         avion->chequearCapacidadMaxima(this);
     }
-    catch (...) {
-
+    catch (exception* e) {
+        delete e;
+        return false;
     }
     avion->pedirPermisoDespegue(aeropuerto); //TODO try catch
     avion->despegar();
@@ -71,7 +72,13 @@ void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
 
 bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)
 {
-    avion->pedirPermisoAterrizaje(aeropuerto); //TODO try catch
+    try {
+        avion->pedirPermisoAterrizaje(aeropuerto);
+    }
+    catch (exception* e) {
+        delete e;
+        return false;
+    }
     avion->aterrizar();
     verificarhorario(aterrizaje, fecha);
     aeropuerto->AgregarAvion(avion);
