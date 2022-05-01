@@ -41,8 +41,10 @@ float cPasajero::getPesoTotal()
  chequear
  */
 bool cPasajero::agregarEquipaje(cEquipaje* valija) {
-    if (valijas->getpesototal() <= 25)
+    if (valijas->getpesototal() <= 25){
         valijas->agregar(valija);
+        return true;
+    }
     else
         throw new exception("Este pasaje ha alcanzado excedido el peso/la cantidad maxima");
 }
