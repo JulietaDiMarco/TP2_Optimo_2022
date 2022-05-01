@@ -10,7 +10,8 @@ enum class eDestino{IGUAZU=0, MENDOZA, BARILOCHE, SALTA, JUJUY};
 
 enum class eTramo{Arribo=0, Partida=1};
 
-string eDestinoToString(eDestino destino) {
+//hay que usar inline porque no existe el cpp y estoy fuera de una clase
+inline string eDestinoToString(eDestino destino) {
 	switch (destino)
 	{
 		case eDestino::IGUAZU:
@@ -34,7 +35,7 @@ string eDestinoToString(eDestino destino) {
 	}
 }
 
-string eTramoToString(eTramo tramo) {
+inline string eTramoToString(eTramo tramo) {
 	switch (tramo)
 	{
 	case eTramo::Arribo:
