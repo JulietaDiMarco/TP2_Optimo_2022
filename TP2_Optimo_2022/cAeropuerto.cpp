@@ -32,7 +32,6 @@ bool cAeropuerto::darPermisoDespegue() {
         throw new exception("No hay aviones disponibles para realizar el despegue.");
 }
 
-
 /**
  * @return bool
  */
@@ -82,8 +81,8 @@ int cAeropuerto::CantPasajerosVolaron(cFecha* fecha)
     int acumulador_pasajeros = 0;
 
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
-        if(cFecha::MismoDia((*vuelos)[i]->partida, fecha) ||
-            cFecha::MismoDia((*vuelos)[i]->aterrizaje, fecha))
+        if(cFecha::MismoDia((*vuelos)[i]->getPartida(), fecha) ||
+            cFecha::MismoDia((*vuelos)[i]->getAterrizaje(), fecha))
             acumulador_pasajeros += (*vuelos)[i]->getCantidadPasajeros();
 
     return acumulador_pasajeros;
@@ -93,7 +92,7 @@ int cAeropuerto::CantVuelosAterrizados(cFecha* fecha)
 {
     int cont = 0;
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
-        if (cFecha::MismoDia((*vuelos)[i]->aterrizaje, fecha))
+        if (cFecha::MismoDia((*vuelos)[i]->getAterrizaje(), fecha))
             cont++;
     return cont;
 }
@@ -102,7 +101,7 @@ int cAeropuerto::CantVuelosDespegaron(cFecha* fecha)
 {
     int cont = 0;
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
-        if (cFecha::MismoDia((*vuelos)[i]->partida, fecha))
+        if (cFecha::MismoDia((*vuelos)[i]->getPartida(), fecha))
             cont++;
     return cont;
 }
