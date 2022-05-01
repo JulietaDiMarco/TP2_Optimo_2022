@@ -24,8 +24,8 @@ public:
     eDestino getDestino() { return this->destino; }
     float getpesoTotalEquipajes();
 
-    bool IniciarDespegue(cAeropuerto * aeropuerto);
-    bool IniciarAterrizaje(cAeropuerto* aeropuerto);
+    bool RealizarDespegue(cAeropuerto * aeropuerto);
+    bool RealizarAterrizaje(cAeropuerto* aeropuerto);
 
 private:
     const string nroVuelo;
