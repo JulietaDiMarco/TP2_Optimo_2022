@@ -2,13 +2,11 @@
 #define _CVUELO_H
 
 #include "cListaPasajero.h"
-#include "gbl.h"
 
 class cAvion;
 class cAeropuerto;
 
 class cVuelo {
-    friend class cAeropuerto;
     friend class cAvion;
 
 public:
@@ -36,6 +34,9 @@ public:
     bool AgregarPasajero(cPasajero* pasajero);
     bool EliminarPasajero(cPasajero* pasajero);
     bool CambiarPasajero(cPasajero* eliminado, cPasajero* agregado);
+    
+    cFecha* getPartida() { return partida; };
+    cFecha* getAterrizaje() { return aterrizaje; };
 
 private:
     const string nroVuelo;
