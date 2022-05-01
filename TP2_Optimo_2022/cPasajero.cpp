@@ -4,7 +4,7 @@
  * cPasajero implementation
  */
 
-cPasajero::cPasajero(string DNI_, string nombre_, string apellido_, unsigned int asiento_, unsigned int cantTotal, unsigned int cantActual) {
+cPasajero::cPasajero(string DNI_, string nombre_, string apellido_, string asiento_) {
     this->DNI = DNI_;
     this->nombre = nombre_;
     this->apellido = apellido_;

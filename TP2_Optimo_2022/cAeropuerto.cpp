@@ -47,22 +47,6 @@ void cAeropuerto::imprimir() {
     return;
 }
 
-int cAeropuerto::avionesEstacionados()
-{   
-    int cantAviones = 0; 
-    int aux = 0;
-
-    while (aux < capacidad) {
-        if (aviones != NULL) {
-            cantAviones++;
-        }
-        aux++;
-    }
-
-    return cantAviones;
-}
-
-
 
 bool cAeropuerto::QuitarAvion(cAvion* avion_)
 {
