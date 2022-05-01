@@ -29,13 +29,9 @@ void cAvion::despegar() {
  */
 void cAvion::aterrizar() {
     
-    if (permisoAterrizaje) {
-
-        setVolando(false); //cambio el estado del avion y lo paso a tierra (no volando)
-        return true;
-    }
-    else
-        return false;
+    if (!volando)
+        throw new exception("El avion ya se encuentra en tierra");
+    volando = false;
 }
 
 /**
@@ -64,6 +60,12 @@ bool cAvion::pedirPermisoDespegue(cAeropuerto* aeropuerto) {
  * @return bool
  */
 
+
+void cAvion::chequearCapacidadMaxima(cVuelo* vuelo)
+{
+    if (capacidad_maxima < vuelo->getCantidadPasajeros())
+        throw new exception("La cantidad de pasajeros supera la capacidad máxima del avión.");
+}
 
 /**
  * @return bool

@@ -4,6 +4,7 @@
 
 class cListaVuelo
 {
+	friend class cVuelo;
 private:
 	bool eliminarNodos;
 	cVuelo** Vuelos;

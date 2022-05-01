@@ -11,7 +11,7 @@ class cVuelo {
     friend class cAvion;
 public:
 
-    cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_);
+    cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, cFecha* partida_, cFecha* aterrizaje_);
     ~cVuelo();
 
     void verPasajero(string DNI);
@@ -23,6 +23,7 @@ public:
     bool getEstado() { return this->estado; }
     eDestino getDestino() { return this->destino; }
     float getpesoTotalEquipajes();
+    unsigned int getCantidadPasajeros();
 
     bool RealizarDespegue(cAeropuerto * aeropuerto);
     bool RealizarAterrizaje(cAeropuerto* aeropuerto);
@@ -35,6 +36,8 @@ private:
     cListaPasajero* pasajeros;
     cAvion* avion;
     static unsigned int Contador;
+    cFecha* partida;
+    cFecha* aterrizaje;
     
 };
 
