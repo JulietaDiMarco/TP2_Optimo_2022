@@ -87,9 +87,9 @@ bool cAeropuerto::QuitarAvion(cAvion* avion_)
 
 int cAeropuerto::CantPasajerosVolaron(cFecha fecha)
 {
-    //TODO
-    for (int i = 0; i < 25/*getCantidadActual*/; i++)
+    //TODO: Falta hacer la sobrecarga []
+    for (int i = 0; i < vuelos->getCantidadActual(); i++)
     {
-        //vuelos[i].
+        vuelos[i]->
     }
 }

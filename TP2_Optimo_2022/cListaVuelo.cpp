@@ -119,6 +119,19 @@ int cListaVuelo::buscar(string id) {
 	return -1;
 }
 
+cVuelo* cListaVuelo::buscar(int pos)
+{
+	if (this->Vuelos[pos] != NULL) {
+
+		cVuelo* aux = NULL;
+		aux = Vuelos[pos];
+		return aux;
+	}
+	else {
+		return NULL;
+	}
+}
+
 int cListaVuelo::buscar(cVuelo* ptr_Vuelo) {
 	for (int i = 0; i < CantidadActual; i++)
 		if (this->Vuelos[i] != NULL && this->Vuelos[i] == ptr_Vuelo)
@@ -150,4 +163,9 @@ void cListaVuelo::imprimir() {
 				this->Vuelos[i]->getEstado() << " " << endl;
 		}
 	cout << endl;
+}
+
+cVuelo* cListaVuelo::operator[](unsigned int pos)
+{
+	return buscar(pos);
 }

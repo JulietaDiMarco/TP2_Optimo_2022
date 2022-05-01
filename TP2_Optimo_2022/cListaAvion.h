@@ -28,7 +28,5 @@ public:
 	void imprimir();
 	unsigned int getCantidadActual();
 
-
-
 };
 

@@ -6,6 +6,7 @@
 
 class cAeropuerto {    
     friend class cAvion;
+
 public: 
     
         cAeropuerto(string idAeropuerto_, int capacidad_);

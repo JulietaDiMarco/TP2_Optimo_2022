@@ -24,9 +24,16 @@ public:
 	cVuelo* quitar(cVuelo* auxVuelo);
 	cVuelo* quitar(int pos);
 	int buscar(string id);
+	cVuelo* buscar(int pos);
 	int buscar(cVuelo* ptr_Vuelo);
 	cVuelo** filtrar(float peso);
 
 	void imprimir();
+
+	unsigned int getCantidadMaxima() { return CantidadMaxima; };
+	unsigned int getCantidadActual() { return CantidadActual; };
+
+	cVuelo* operator[](unsigned int pos);
+
 };
 
