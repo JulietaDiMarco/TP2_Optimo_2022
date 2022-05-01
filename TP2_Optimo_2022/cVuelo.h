@@ -25,8 +25,10 @@ public:
     float getpesoTotalEquipajes();
     unsigned int getCantidadPasajeros();
 
-    bool RealizarDespegue(cAeropuerto * aeropuerto);
-    bool RealizarAterrizaje(cAeropuerto* aeropuerto);
+    bool RealizarDespegue(cAeropuerto * aeropuerto, cFecha* fecha);
+    bool RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha);
+
+    void verificarhorario(cFecha* mi_hora, cFecha* fecha);
 
 private:
     const string nroVuelo;
@@ -38,6 +40,7 @@ private:
     static unsigned int Contador;
     cFecha* partida;
     cFecha* aterrizaje;
+    bool en_horario;
     
 };
 
