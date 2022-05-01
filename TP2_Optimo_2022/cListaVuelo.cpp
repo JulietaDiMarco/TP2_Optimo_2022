@@ -167,5 +167,5 @@ void cListaVuelo::imprimir() {
 
 cVuelo* cListaVuelo::operator[](unsigned int pos)
 {
-	return buscar(pos);
+	return this->Vuelos[pos];
 }
