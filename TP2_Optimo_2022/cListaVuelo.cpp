@@ -165,7 +165,7 @@ void cListaVuelo::imprimir() {
 	cout << endl;
 }
 
-cVuelo* cListaVuelo::operator[](unsigned int pos)
+cVuelo* cListaVuelo::operator[](int pos)
 {
 	return this->Vuelos[pos];
 }

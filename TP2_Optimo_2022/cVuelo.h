@@ -7,7 +7,7 @@
 class cAvion;
 class cAeropuerto;
 class cVuelo {
-
+    friend class cAeropuerto;
     friend class cAvion;
 public:
 

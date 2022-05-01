@@ -34,7 +34,7 @@ public:
 	unsigned int getCantidadMaxima() { return CantidadMaxima; };
 	unsigned int getCantidadActual() { return CantidadActual; };
 
-	cVuelo* operator[](unsigned int pos);
+	cVuelo* operator[](int pos);
 
 };
 

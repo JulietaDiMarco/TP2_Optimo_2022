@@ -47,6 +47,9 @@ class cFecha
 			// Determina si el vuelo se encuentra atrasado o no
 			static bool EstaAtrasado(cFecha* fecha1, cFecha* fecha2);
 
+			// Determina si las dos fechas tiene el mismo dia
+			static bool MismoDia(cFecha* fecha1, cFecha* fecha2);
+
 		#pragma endregion
 
 		#pragma region Sobrecarga de Operadores
