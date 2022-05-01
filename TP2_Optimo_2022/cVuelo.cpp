@@ -4,17 +4,21 @@
 
 unsigned int cVuelo::Contador = 0;
 
-cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_):nroVuelo(to_string(Contador)) {
+cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, cFecha* partida_, cFecha* aterrizaje_):nroVuelo(to_string(Contador)) {
     Contador++;
     this->avion=avion_;
     this->estado = estado_;
     this->destino = destino_;
     this->tramo = tramo_;
     pasajeros = new cListaPasajero();
+    this->partida = new cFecha(*partida_);
+    this->aterrizaje = new cFecha(*aterrizaje_);
 }
 
 cVuelo::~cVuelo() {
     delete pasajeros;
+    delete partida;
+    delete aterrizaje;
 }
 
 void cVuelo::verPasajero(string DNI) {
