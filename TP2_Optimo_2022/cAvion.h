@@ -16,11 +16,10 @@ public:
     void aterrizar();
     bool pedirPermisoAterrizaje(cAeropuerto* aeropuerto);
     bool pedirPermisoDespegue(cAeropuerto* aeropuerto);
-    float getPesoTotalEquipaje();
     void chequearCapacidadMaxima(cVuelo* vuelo);
     void chequearCargaMaxima(cVuelo* vuelo);
 
-    bool conVueloAsignado();
+
     bool getVolando() { return this->volando; } // devuelve true si el avion esta volando y false si esta en tierra
     float getPesoMaximo() { return this->pesoMaximo; }
     void setVolando(bool vuela);
