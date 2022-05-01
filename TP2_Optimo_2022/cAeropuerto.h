@@ -27,6 +27,7 @@ public:
         int avionesEstacionados();
         bool pistaDespejada();
         bool QuitarAvion(cAvion* avion_);
+        bool AgregarAvion(cAvion* avion_);
 
         
         /// <summary>
