@@ -10,6 +10,7 @@ class cFecha
 		#pragma endregion	
 
 		#pragma region Constructor y Destructor
+		
 		public:
 			//Constructor por default, inicia en la fecha de hoy
 			cFecha();
@@ -24,8 +25,7 @@ class cFecha
 		#pragma endregion
 
 		#pragma region Metodos
-
-
+			
 			//Calcula el numero de días entre dos fechas
 			static int DiasEntreFechas(cFecha* inicio, cFecha* fin);
 
@@ -43,6 +43,9 @@ class cFecha
 
 			// Imprime fecha
 			void ImprimirFecha();
+
+			// Determina si el vuelo se encuentra atrasado o no
+			static bool EstaAtrasado(cFecha* fecha1, cFecha* fecha2);
 
 		#pragma endregion
 

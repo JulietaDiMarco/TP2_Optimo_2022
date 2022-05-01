@@ -1,6 +1,7 @@
 #ifndef _CAEROPUERTO_H
 #define _CAEROPUERTO_H
 
+#include "cListaVuelo.h"
 #include "cListaAvion.h"
 
 class cAeropuerto {
@@ -23,6 +24,14 @@ class cAeropuerto {
 
         int avionesEstacionados();
         bool pistaDespejada();
+        
+        /// <summary>
+        /// Determina la cantidad total de pasajeros que volaron en
+        /// una determina fecha.
+        /// </summary>
+        /// <param name="fecha">Fecha para hacer la estadistica</param>
+        /// <returns>Cantidad total de pasajeros</returns>
+        int CantPasajerosVolaron(cFecha fecha);
 
     private: 
         const string idAeropuerto;

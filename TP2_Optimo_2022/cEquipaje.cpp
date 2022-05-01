@@ -1,14 +1,8 @@
-/**
- * Project Untitled
- */
-
 
 #include "cEquipaje.h"
 
-/**
- * cEquipaje implementation
- */
-
+// Este parametro nos va a ayudar a determinar la cantidad de equipaje
+// al igual que asignar el ID de equipajes
 unsigned int cEquipaje::contador_equipajes = 0;
 
 cEquipaje::cEquipaje(float peso_):idEquipaje(to_string(contador_equipajes)) {
@@ -17,43 +11,24 @@ cEquipaje::cEquipaje(float peso_):idEquipaje(to_string(contador_equipajes)) {
 }
 
 cEquipaje::~cEquipaje() {
-
+    contador_equipajes--;
 }
 
-/**
- * @return string
- */
-string cEquipaje::tostring() { //TODO
-    return "";
+string cEquipaje::tostring() { 
+    string text = "";
+    text += "\nEquipaje ID:" + idEquipaje;
+    text += "\nPeso:" + std::to_string(peso);
+    return text;
 }
 
-/**
- * @return void
- */
-void cEquipaje::imprimir() {//TODO
-    return;
+void cEquipaje::imprimir() {
+    cout << tostring() << endl;
 }
 
-/**
- * @return float
- */
 float cEquipaje::getPeso() {
     return peso;
 }
 
-/**
- * @return string
- */
 string cEquipaje::getIDequipaje() {
     return idEquipaje;
 }
-
-/**
- * @return cPasajero
- */
-/*
-cPasajero* cEquipaje::getDueno() {
-    return NULL;
-}
-*/
-

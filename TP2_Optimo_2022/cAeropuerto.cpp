@@ -1,5 +1,5 @@
-#include "cAeropuerto.h"
 
+#include "cAeropuerto.h"
 
 cAeropuerto::cAeropuerto(string idAeropuerto_, int capacidad_):idAeropuerto(idAeropuerto_) {
     this->capacidad = capacidad_;
@@ -92,4 +92,13 @@ bool cAeropuerto::pistaDespejada()
         }
     }    
     return true;
+}
+
+int cAeropuerto::CantPasajerosVolaron(cFecha fecha)
+{
+    //TODO
+    for (int i = 0; i < 25/*getCantidadActual*/; i++)
+    {
+        vuelos[i].
+    }
 }
