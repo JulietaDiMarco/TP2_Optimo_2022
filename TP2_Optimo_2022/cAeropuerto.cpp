@@ -87,9 +87,11 @@ bool cAeropuerto::QuitarAvion(cAvion* avion_)
 
 int cAeropuerto::CantPasajerosVolaron(cFecha fecha)
 {
-    //TODO: Falta hacer la sobrecarga []
+    int acumulador_pasajeros = 0;
+
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
-    {
-        vuelos[i]->
-    }
+        //if() falta agregar la condicion de que sea el mismo dia
+        acumulador_pasajeros += vuelos->operator[](i)->getCantidadPasajeros();
+
+    return acumulador_pasajeros;
 }
