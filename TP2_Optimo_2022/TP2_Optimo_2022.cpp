@@ -94,7 +94,7 @@ void BorrarAviones(cAvion** aviones) {
 }
 
 cEquipaje** InicializarEquipajes() { //me genero equipajes con pesos random para probar distintas formas en distintas corridas
-    cEquipaje** equipajes = new cEquipaje * [5];
+    cEquipaje** equipajes = new cEquipaje * [10];
     for (int i = 0; i < 10; i++)
     {
         equipajes[i] = new cEquipaje(rand()%27);
