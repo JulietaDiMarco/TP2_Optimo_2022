@@ -61,7 +61,7 @@ cPasajero** InicializarPasajeros() {
     cPasajero** pasajeros = new cPasajero * [3];
     pasajeros[0] = new cPasajero("41258963", "Federico", "Serra", "5F", &Nov8);
     pasajeros[1] = new cPasajero("4455963", "Carolina", "Serra", "7F", &Dec13);
-    pasajeros[0] = new cPasajero("61258963", "Tomas", "Serra", "5F", &June5);
+    pasajeros[2] = new cPasajero("61258963", "Tomas", "Serra", "5F", &June5);
     return pasajeros;
 }
 
