@@ -56,13 +56,56 @@ int main()
         vuelos[2]->AgregarPasajero(pasajeros[i]);
     }
     
-    //vuelos[0]->RealizarAterrizaje()
+    cFecha Nov8a = cFecha(8, 11, 2021, 13, 31); //aterriza atrasado
+    cFecha Nov8p = cFecha(8, 11, 2021, 9, 31);  //despega atrasado
+    cFecha Dec13p = cFecha(13, 12, 2021, 4, 6);
+    cFecha Dec13a = cFecha(13, 12, 2021, 7, 6);
+    cFecha June5p = cFecha(5, 6, 2021, 18, 40); //aterriza adelantado dos minutos
+    cFecha June5a = cFecha(5, 6, 2021, 20, 42);
+    cFecha July13a = cFecha(13, 7, 2021, 17, 50); //aterriza atrasado por pocos minutos
+    cFecha July13p = cFecha(13, 7, 2021, 13, 42);
+
+    vuelos[0]->RealizarDespegue(aeropuerto, &Nov8p);
+    vuelos[0]->RealizarAterrizaje(aeropuerto, &Nov8p);
+    vuelos[1]->RealizarDespegue(aeropuerto, &Dec13p);
+    vuelos[1]->RealizarAterrizaje(aeropuerto, &Dec13a);
+    vuelos[2]->RealizarDespegue(aeropuerto, &June5p);
+    vuelos[2]->RealizarAterrizaje(aeropuerto, &June5a);
+    vuelos[3]->RealizarDespegue(aeropuerto, &July13p);
+    vuelos[4]->RealizarAterrizaje(aeropuerto, &July13a);
+
+    aeropuerto->CantPasajerosVolaron(&Nov8a);
+    aeropuerto->CantPasajerosVolaron(&Dec13a);
+    aeropuerto->CantPasajerosVolaron(&June5a);
+    aeropuerto->CantPasajerosVolaron(&July13a);
+
+    aeropuerto->CantVuelosAterrizados(&Nov8a);
+    aeropuerto->CantVuelosAterrizados(&Dec13a);
+    aeropuerto->CantVuelosAterrizados(&June5a);
+    aeropuerto->CantVuelosAterrizados(&July13a);
+
+    aeropuerto->CantVuelosDespegaron(&Nov8a);
+    aeropuerto->CantVuelosDespegaron(&Dec13a);
+    aeropuerto->CantVuelosDespegaron(&June5a);
+    aeropuerto->CantVuelosDespegaron(&July13a);
+
+    //fechas de prueba fuera de los vuelos que ya tengo
+    cFecha fecha1 = cFecha(9, 12, 2021);
+    cFecha fecha2 = cFecha(14, 3, 2021);
+                
+    aeropuerto->CantVuelosAterrizados(&fecha1);   //creo fecha de prueba para ver que no me devuelva nada en un dia que no hubo vuelos
+    aeropuerto->CantVuelosDespegaron(&fecha2);   //hago lo mismo ocn los despegues
+
+    aeropuerto->PorcentajeArribosEnHorario();
+    aeropuerto->PorcentajeDespeguesEnHorario();
 
     ///Libero memoria
     BorrarPasajeros(pasajeros);
     BorrarAviones(aviones);
     BorrarEquipajes(equipajes);
     BorrarVuelos(vuelos);
+
+    return 0;
 
 }
 
@@ -132,7 +175,7 @@ cVuelo** InicializarVuelos(cAvion** aviones) {
     cFecha June5p = cFecha(5, 6, 2021,18,42);
     cFecha June5a = cFecha(5, 6, 2021, 20, 42);
     cFecha July13a = cFecha(13, 7, 2021, 17, 42);
-    cFecha July13p = cFecha(5, 6, 2021, 13, 42);
+    cFecha July13p = cFecha(13, 7, 2021, 13, 42);
     cVuelo** vuelos = new cVuelo * [4];
     vuelos[0] = new cVuelo(true, eDestino::IGUAZU, eTramo::Arribo, aviones[2], &Dec13p, &Dec13a);
     vuelos[1] = new cVuelo(true, eDestino::BARILOCHE, eTramo::Arribo, aviones[0], &June5p, &June5a);
