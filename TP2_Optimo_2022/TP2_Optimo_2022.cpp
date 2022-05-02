@@ -61,23 +61,37 @@ int main()
         vuelos[2]->AgregarPasajero(pasajeros[i]);
     }
     
-    cFecha** MisFechas = new cFecha*[N_FECHAS];
+   cFecha** MisFechas = new cFecha*[N_FECHAS];
 
     for (int i = 0; i < N_FECHAS; i++) {
-        MisFechas[i] = NULL;
+       MisFechas[i] = NULL;
+    }
+    cFecha* fecha1 = new cFecha(8, 11, 2021, 12, 54);
+    cout << "hola soy fecha 1" << &fecha1 << endl;
+    cFecha* fecha2 = new cFecha(8, 11, 2021, 8, 54);
+    cFecha* fecha3 = new cFecha(13, 12, 2021, 4, 6);
+    cFecha* fecha4 = new cFecha(13, 12, 2021, 7, 6);
+    cFecha* fecha5 = new cFecha(5, 6, 2021, 18, 42);
+    cFecha* fecha6 = new cFecha(5, 6, 2021, 20, 42);
+    cFecha* fecha7 = new cFecha(13, 7, 2021, 17, 42);
+    cFecha* fecha8 = new cFecha(13, 7, 2021, 13, 42);
+
+    MisFechas[0] = fecha1;
+    MisFechas[1] = fecha2;
+    MisFechas[2] = fecha3;
+    MisFechas[3] = fecha4;
+    MisFechas[4] = fecha5;
+    MisFechas[5] = fecha6;
+    MisFechas[6] = fecha7;
+    MisFechas[7] = fecha8;
+
+    for (int i = 0; i < N_FECHAS; i++) {
+        MisFechas[i]->ImprimirFecha();
     }
 
-    *MisFechas[0] = cFecha(8, 11, 2021, 12, 54);
-    *MisFechas[1] = cFecha(8, 11, 2021, 8, 54);
-    *MisFechas[2] = cFecha(13, 12, 2021, 4, 6);
-    *MisFechas[3] = cFecha(13, 12, 2021, 7, 6);
-    *MisFechas[4] = cFecha(5, 6, 2021, 18, 42);
-    *MisFechas[5] = cFecha(5, 6, 2021, 20, 42);
-    *MisFechas[6] = cFecha(13, 7, 2021, 17, 42);
-    *MisFechas[7] = cFecha(13, 7, 2021, 13, 42);
 
     for (int i = 0; i < N_FECHAS; i++) {
-        cout << "El dia " << &MisFechas[i] << " aterrizaron  " << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << ", despegaron "
+        cout << "El dia " << MisFechas[i]->To_string() << " aterrizaron  " << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << ", despegaron "
             << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << " vuelos y la cantidad de pasajeros que volaron ese dia fue de " << 
             aeropuerto->CantPasajerosVolaron(MisFechas[i]) << endl;
         
