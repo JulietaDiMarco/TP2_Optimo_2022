@@ -15,7 +15,9 @@ int main()
     cEquipaje* equipaje2 = new cEquipaje(10.0);
     cEquipaje* equipaje3 = new cEquipaje(10.0);
 
-    cPasajero* pasajero = new cPasajero("4545545", "Bruno", "Cruz Franchi", 12, 12, 2);
+    cFecha* fnacimiento = new cFecha();
+
+    cPasajero* pasajero = new cPasajero("4545545", "Bruno", "Cruz Franchi", "12A", fnacimiento);
     (*pasajero) + equipaje1;
     (*pasajero) + equipaje3;
     (*pasajero) + equipaje2;
