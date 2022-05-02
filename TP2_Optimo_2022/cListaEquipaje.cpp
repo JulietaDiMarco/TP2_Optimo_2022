@@ -67,6 +67,7 @@ bool cListaEquipaje::eliminar(string idEquipaje) {
 		if (this->Equipajes[i] != NULL && this->Equipajes[i]->getIDequipaje() == idEquipaje) {
 			delete this->Equipajes[i];
 			this->Equipajes[i] = NULL;
+			CantidadActual--;
 			return true;
 		}
 	} return false;

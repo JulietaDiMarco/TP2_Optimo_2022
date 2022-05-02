@@ -9,7 +9,7 @@ class cAeropuerto;
 class cAvion {
     friend class cVuelo;
 public: 
-    cAvion(int cantidadPasajeros_, int cantidadActual_, bool permisoAterrizaje_, bool permisoDespegue_, float pesoMaximo_, float capacidad_maxima_, bool volando_);
+    cAvion(float pesoMaximo_, float capacidad_maxima_, bool volando_);
     ~cAvion();
     
     void despegar();    

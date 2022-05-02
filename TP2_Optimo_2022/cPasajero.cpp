@@ -77,12 +77,11 @@ void cPasajero::operator-(cEquipaje* equipaje)
         throw new exception("No se logro eliminar el equipaje al pasajero");
 }
 
-/**
- * @return bool
- */
-bool cPasajero::eliminarEquipaje(string id) {//TODO
-    //llamo a cListaEquipaje::eliminar(string id)
-    return false;
+bool cPasajero::eliminarEquipaje(string id) {
+    if (valijas->eliminar(id))
+        return true;
+    else 
+        throw new exception("Este pasaje no se ha logrado eliminar");
 }
 
 

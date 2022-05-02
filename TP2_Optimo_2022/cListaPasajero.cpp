@@ -21,9 +21,10 @@ cListaPasajero::~cListaPasajero() {
 }
 
 bool cListaPasajero::agregar(cPasajero* nuevoPasajero) { //TODO: chequear que entren en la lista 
-	for (unsigned int i = 0; i < CantidadActual; i++) {
+	for (unsigned int i = 0; i < CantidadMaxima; i++) {
 		if (this->pasajeros[i] == NULL) {
 			this->pasajeros[i] = nuevoPasajero;
+			CantidadActual++;
 			return true;
 		}
 	} return false;

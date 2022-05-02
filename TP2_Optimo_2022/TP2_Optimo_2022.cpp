@@ -18,7 +18,7 @@ void BorrarVuelos(cVuelo** vuelos);
 
 int main()
 {
-    cAvion* avion = new cAvion(10, 4, false, false, 1000, 12, false);
+    cAvion* avion = new cAvion(1235.0, 120, false);
     cFecha* fecha1 = new cFecha();
     cFecha* fecha2 = new cFecha(2,5,2022);
     cVuelo* vuelo = new cVuelo(false, eDestino::BARILOCHE, eTramo::Arribo, avion, fecha1, fecha2);
@@ -76,7 +76,11 @@ void BorrarPasajeros(cPasajero** pasajeros) {
 }
 
 cAvion** InicializarAviones() {
-    return NULL;
+    cAvion** aviones = new cAvion * [3];
+    aviones[0] = new cAvion(2500.0, 120, false);
+    aviones[1] = new cAvion(2250.0, 135, true);
+    aviones[2] = new cAvion(2123.0, 110, false);
+    return aviones;
 } 
 
 void BorrarAviones(cAvion** aviones) {
@@ -120,7 +124,6 @@ cVuelo** InicializarVuelos(cAvion** aviones) {
     cVuelo** vuelos = new cVuelo * [4];
     vuelos[0] = new cVuelo(true, eDestino::IGUAZU, eTramo::Arribo, aviones[2], &Dec13p, &Dec13a);
     vuelos[1] = new cVuelo(true, eDestino::BARILOCHE, eTramo::Arribo, aviones[0], &June5p, &June5a);
-
     vuelos[2] = new cVuelo(false, eDestino::SALTA, eTramo::Partida, aviones[1], &Nov8p, &Nov8a);
     vuelos[3] = new cVuelo(false, eDestino::JUJUY, eTramo::Partida, aviones[0], &July13p, &July13a);
     return vuelos;

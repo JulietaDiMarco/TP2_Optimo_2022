@@ -5,8 +5,9 @@
 
 unsigned int cAvion::cantidad_aviones = 0;
 
-cAvion::cAvion(int cantidadPasajeros_, int cantidadActual_, bool permisoAterrizaje_, bool permisoDespegue_, float pesoMaximo_, float capacidad_maxima_, bool volando_):id(to_string(cantidad_aviones)) {
+cAvion::cAvion(float pesoMaximo_, float capacidad_maxima_, bool volando_):id(to_string(cantidad_aviones)) {
     cantidad_aviones++;
+
     this->pesoMaximo = pesoMaximo_;
     this->volando = volando_;
     this->capacidad_maxima = capacidad_maxima_;

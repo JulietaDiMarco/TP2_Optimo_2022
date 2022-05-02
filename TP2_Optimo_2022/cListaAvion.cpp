@@ -20,9 +20,10 @@ cListaAvion::~cListaAvion() {
 }
 
 bool cListaAvion::agregar(cAvion* nuevoAvion) {
-	for (unsigned int i = 0; i < CantidadActual; i++) {
+	for (unsigned int i = 0; i < CantidadMaxima; i++) {
 		if (this->Aviones[i] == NULL) {
 			this->Aviones[i] = nuevoAvion;
+			CantidadActual++;
 			return true;
 		}
 	} return false;
