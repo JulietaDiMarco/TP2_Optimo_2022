@@ -66,15 +66,17 @@ void cPasajero::imprimir() {
     cout << concatenado << endl;
 }
 
-void cPasajero::operator+(cEquipaje* equipaje)
+bool cPasajero::operator+(cEquipaje* equipaje)
 {
-    agregarEquipaje(equipaje);
+    return agregarEquipaje(equipaje);
  }
 
-void cPasajero::operator-(cEquipaje* equipaje)
+bool cPasajero::operator-(cEquipaje* equipaje)
 {
-    if (!(valijas->eliminar(equipaje)))
+    bool aux = (valijas->eliminar(equipaje));
+    if (!aux)
         throw new exception("No se logro eliminar el equipaje al pasajero");
+    return aux;
 }
 
 bool cPasajero::eliminarEquipaje(string id) {

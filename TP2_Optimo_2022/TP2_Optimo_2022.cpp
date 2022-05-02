@@ -15,23 +15,10 @@ cEquipaje** InicializarEquipajes();
 void BorrarEquipajes(cEquipaje** equipajes);
 cVuelo** InicializarVuelos(cAvion** aviones);
 void BorrarVuelos(cVuelo** vuelos);
+void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes);
 
 int main()
 {
-    cAvion* avion = new cAvion(1235.0, 120, false);
-    cFecha* fecha1 = new cFecha();
-    cFecha* fecha2 = new cFecha(2,5,2022);
-    cVuelo* vuelo = new cVuelo(false, eDestino::BARILOCHE, eTramo::Arribo, avion, fecha1, fecha2);
-    
-    cout << (*vuelo);
-
-    
-    /*
-    (*pasajero) + equipaje1;
-    (*pasajero) + equipaje3;
-    (*pasajero) + equipaje2;
-    */
-
     srand(time(NULL));
     ///Inicializo Fechas
   
@@ -43,8 +30,33 @@ int main()
     cAvion** aviones = InicializarAviones();
     ///Inicializo vuelos
     cVuelo** vuelos = InicializarVuelos(aviones);
+    ///Inicializo Aeroparque
 
+    cAeropuerto* aeropuerto = new cAeropuerto("AEP", 2);
+
+    //Agrego los vuelos a aeropuerto
+    for (int i = 0; i <3; i++)
+    {
+        aeropuerto->AgregarAvion(aviones[i]);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        aeropuerto->AgregarVuelo(vuelos[i]);
+    }
     
+    //Agrego valijas a mis pasajeros
+
+    AgregarValijas(pasajeros, equipajes);
+    
+    //Agrego pasajeros a mi vuelo
+    for (int i = 0; i < 3; i++)
+    {
+        vuelos[0]->AgregarPasajero(pasajeros[i]);
+        vuelos[2]->AgregarPasajero(pasajeros[i]);
+    }
+    
+    //vuelos[0]->RealizarAterrizaje()
 
     ///Libero memoria
     BorrarPasajeros(pasajeros);
@@ -77,9 +89,9 @@ void BorrarPasajeros(cPasajero** pasajeros) {
 
 cAvion** InicializarAviones() {
     cAvion** aviones = new cAvion * [3];
-    aviones[0] = new cAvion(2500.0, 120, false);
-    aviones[1] = new cAvion(2250.0, 135, true);
-    aviones[2] = new cAvion(2123.0, 110, false);
+    aviones[0] = new cAvion(2500, 120, false);
+    aviones[1] = new cAvion(2250, 135, true);
+    aviones[2] = new cAvion(2123, 110, false);
     return aviones;
 } 
 
@@ -137,5 +149,17 @@ void BorrarVuelos(cVuelo** vuelos) {
     }
 
     delete[] vuelos;
+}
+
+void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes) {
+    for (int i = 0; i < 5; i++)
+    {
+        try {
+            *(pasajeros[rand() % 3]) + equipajes[rand() % 10];
+        }
+        catch (exception* e) {
+            cout << string(e->what()) << endl;
+        }
+    }
 }
     

@@ -22,8 +22,8 @@ public:
     string tostring();
     void imprimir();
 
-    void operator+(cEquipaje* equipaje);
-    void operator-(cEquipaje* equipaje);
+    bool operator+(cEquipaje* equipaje);
+    bool operator-(cEquipaje* equipaje);
 
 
 private: 
