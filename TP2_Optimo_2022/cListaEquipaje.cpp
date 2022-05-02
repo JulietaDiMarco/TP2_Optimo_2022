@@ -20,9 +20,11 @@ cListaEquipaje::~cListaEquipaje() {
 }
 
 bool cListaEquipaje::agregar(cEquipaje* nuevoEquipaje) {
-	for (unsigned int i = 0; i < CantidadActual; i++) {
+	int i;
+	for (i = 0; i < this->CantidadMaxima; i++) {
 		if (this->Equipajes[i] == NULL) {
 			this->Equipajes[i] = nuevoEquipaje;
+			CantidadActual++;
 			return true;
 		}
 	} return false;

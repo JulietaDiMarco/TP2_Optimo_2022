@@ -31,13 +31,12 @@ void cVuelo::verPasajero(string DNI) {
 }
 
 string cVuelo::tostring() {
-    return "";
+    return "HELO";
 }
 
 void cVuelo::imprimir() {
     return;
 }
-
 
 float cVuelo::getpesoTotalEquipajes()
 {
@@ -103,4 +102,9 @@ bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)
     verificarhorario(aterrizaje, fecha);
     aeropuerto->AgregarAvion(avion);
     return true;
+}
+
+ostream& operator<<(ostream& out, cVuelo& vuelo)
+{
+    return out << vuelo.tostring() << endl;
 }

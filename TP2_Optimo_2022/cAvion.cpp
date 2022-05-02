@@ -45,7 +45,6 @@ bool cAvion::pedirPermisoAterrizaje(cAeropuerto* aeropuerto) {
 }
 
 
-
 bool cAvion::pedirPermisoDespegue(cAeropuerto* aeropuerto) {
   
     return aeropuerto->darPermisoDespegue(); 
@@ -78,8 +77,6 @@ void cAvion::chequearCargaMaxima(cVuelo* vuelo) {
 }
 
 
-
-
 void cAvion::setVolando(bool vuela){
     volando = vuela;
 }
@@ -97,4 +94,10 @@ string cAvion::tostring() {
  */
 void cAvion::imprimir() {
     return;
+}
+
+
+ostream& operator<<(ostream& out, cAvion& avion)
+{
+    return out << avion.tostring() << endl;
 }

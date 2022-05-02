@@ -21,7 +21,11 @@ public:
 
     string tostring();
     void imprimir();
-    
+
+    void operator+(cEquipaje* equipaje);
+    void operator-(cEquipaje* equipaje);
+
+
 private: 
     string DNI;
     string nombre;

@@ -52,6 +52,10 @@ public:
         /// <returns></returns>
         int CantVuelosDespegaron(cFecha* fecha);
 
+        float PorcentajeDespeguesEnHorario();
+
+        float PorcentajeArribosEnHorario();
+
     private: 
         const string idAeropuerto;
         int capacidad;
