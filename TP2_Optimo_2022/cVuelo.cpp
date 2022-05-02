@@ -21,22 +21,6 @@ cVuelo::~cVuelo(){
     delete aterrizaje;
 }
 
-void cVuelo::verPasajero(string DNI) {
-    
-    int pos = pasajeros->buscar(DNI);
-    cPasajero* mi_pasajero = pasajeros->buscar(pos);
-    mi_pasajero->imprimir();
-
-}
-
-string cVuelo::tostring() {
-    return "HELO";
-}
-
-void cVuelo::imprimir() {
-    return;
-}
-
 float cVuelo::getpesoTotalEquipajes()
 {
     return pasajeros->getpesoTotalEquipajes();
@@ -69,25 +53,6 @@ void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
         en_horario = true;
 }
 
-bool cVuelo::AgregarPasajero(cPasajero* pasajero)
-{
-    return pasajeros->agregar(pasajero);
-}
-
-bool cVuelo::EliminarPasajero(cPasajero* pasajero)
-{
-    return pasajeros->quitar(pasajero)!=NULL;
-}
-
-bool cVuelo::CambiarPasajero(cPasajero* eliminado, cPasajero* agregado)
-{
-    if (pasajeros->quitar(eliminado)) {
-        return pasajeros->agregar(agregado);
-    }
-    else
-        return false;
-}
-
 bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)
 {
     try {
@@ -101,6 +66,46 @@ bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)
     verificarhorario(aterrizaje, fecha);
     aeropuerto->AgregarAvion(avion);
     return true;
+}
+
+string cVuelo::tostring() {
+    string text = "";
+    text += "\nNroVuelo: " + this->nroVuelo + " Destino: " + eDestinoToString(this->destino);
+    text += " Cantidad Pasajeros: " + std::to_string(this->pasajeros->CantidadActual);
+    return text;
+}
+
+void cVuelo::imprimir() {
+    
+    cout << this->tostring() << endl;
+
+}
+
+void cVuelo::verPasajero(string DNI) {
+
+    int pos = pasajeros->buscar(DNI);
+    cPasajero* mi_pasajero = pasajeros->buscar(pos);
+    mi_pasajero->imprimir();
+
+}
+
+bool cVuelo::AgregarPasajero(cPasajero* pasajero)
+{
+    return pasajeros->agregar(pasajero);
+}
+
+bool cVuelo::EliminarPasajero(cPasajero* pasajero)
+{
+    return pasajeros->quitar(pasajero) != NULL;
+}
+
+bool cVuelo::CambiarPasajero(cPasajero* eliminado, cPasajero* agregado)
+{
+    if (pasajeros->quitar(eliminado)) {
+        return pasajeros->agregar(agregado);
+    }
+    else
+        return false;
 }
 
 ostream& operator<<(ostream& out, cVuelo& vuelo)

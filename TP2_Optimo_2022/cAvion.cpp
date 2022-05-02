@@ -1,7 +1,9 @@
+
 #include "cAvion.h"
+#include "cAeropuerto.h" 
+
 #define N_TRIPULANTES 4
 #define PESO_PROMEDIO 75
-#include "cAeropuerto.h" 
 
 unsigned int cAvion::cantidad_aviones = 0;
 
@@ -15,9 +17,6 @@ cAvion::cAvion(float pesoMaximo_, float capacidad_maxima_, bool volando_):id(to_
 cAvion::~cAvion() {
 }
 
-/**
- * @return bool
- */
 void cAvion::despegar() {
     
     if (volando)
@@ -25,9 +24,6 @@ void cAvion::despegar() {
     volando = true;
 }
 
-/**
- * @return bool
- */
 void cAvion::aterrizar() {
     
     if (!volando)
@@ -35,25 +31,16 @@ void cAvion::aterrizar() {
     volando = false;
 }
 
-/**
- * @return bool
- */
 bool cAvion::pedirPermisoAterrizaje(cAeropuerto* aeropuerto) {
     bool permiso;
     permiso = aeropuerto->darPermisoAterrizaje();
     return permiso;
 }
 
-
 bool cAvion::pedirPermisoDespegue(cAeropuerto* aeropuerto) {
   
     return aeropuerto->darPermisoDespegue(); 
 }
-
-/**
- * @return bool
- */
-
 
 void cAvion::chequearCapacidadMaxima(cVuelo* vuelo)
 {
@@ -61,9 +48,6 @@ void cAvion::chequearCapacidadMaxima(cVuelo* vuelo)
         throw new exception("La cantidad de pasajeros supera la capacidad máxima del avión.");
 }
 
-/**
- * @return bool
- */
 void cAvion::chequearCargaMaxima(cVuelo* vuelo) {
     float peso_humano = (vuelo->pasajeros->getCantidadActual() + N_TRIPULANTES)* PESO_PROMEDIO;
     float peso_equipaje = vuelo->getpesoTotalEquipajes();
@@ -76,26 +60,17 @@ void cAvion::chequearCargaMaxima(cVuelo* vuelo) {
 
 }
 
-
 void cAvion::setVolando(bool vuela){
     volando = vuela;
 }
 
-
-/**
- * @return string
- */
 string cAvion::tostring() {
     return "";
 }
 
-/**
- * @return void
- */
 void cAvion::imprimir() {
     return;
 }
-
 
 ostream& operator<<(ostream& out, cAvion& avion)
 {

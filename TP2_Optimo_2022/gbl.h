@@ -10,7 +10,7 @@ enum class eDestino{IGUAZU=0, MENDOZA, BARILOCHE, SALTA, JUJUY};
 
 enum class eTramo{Arribo=0, Partida=1};
 
-//hay que usar inline porque no existe el cpp y estoy fuera de una clase
+// Hay que usar inline porque no existe el cpp y estoy fuera de una clase
 inline string eDestinoToString(eDestino destino) {
 	switch (destino)
 	{
