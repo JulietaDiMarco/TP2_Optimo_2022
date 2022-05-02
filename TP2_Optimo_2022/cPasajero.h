@@ -8,7 +8,7 @@ class cPasajero {
 
 public: 
     
-    cPasajero(string DNI_, string nombre_, string apellido_, string asiento_);
+    cPasajero(string DNI_, string nombre_, string apellido_, string asiento_, cFecha* fn);
     ~cPasajero();
     
     string getDNI();

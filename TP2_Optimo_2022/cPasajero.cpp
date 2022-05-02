@@ -4,11 +4,12 @@
  * cPasajero implementation
  */
 
-cPasajero::cPasajero(string DNI_, string nombre_, string apellido_, string asiento_) {
+cPasajero::cPasajero(string DNI_, string nombre_, string apellido_, string asiento_, cFecha* fn) {
     this->DNI = DNI_;
     this->nombre = nombre_;
     this->apellido = apellido_;
     this->asiento = asiento_;
+    this->fecha_nacimiento = new cFecha(*fn);
     cListaEquipaje* valijas = new cListaEquipaje(MAX_EQUIPAJE, false); //le asigno por defecto una valija sola
 }
 
