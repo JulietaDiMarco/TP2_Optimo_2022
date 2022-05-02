@@ -1,10 +1,9 @@
 #include "cVuelo.h"
-#include "cAvion.h"
 #include "cAeropuerto.h"
 
 unsigned int cVuelo::Contador = 0;
 
-cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, cFecha* partida_, cFecha* aterrizaje_):nroVuelo(to_string(Contador)) {
+cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, cFecha* partida_, cFecha* aterrizaje_):nroVuelo(to_string(Contador)){
     Contador++;
     this->avion=avion_;
     this->estado = estado_;
@@ -16,7 +15,7 @@ cVuelo::cVuelo(bool estado_, eDestino destino_, eTramo tramo_, cAvion* avion_, c
     this->en_horario = false;
 }
 
-cVuelo::~cVuelo() {
+cVuelo::~cVuelo(){
     delete pasajeros;
     delete partida;
     delete aterrizaje;
