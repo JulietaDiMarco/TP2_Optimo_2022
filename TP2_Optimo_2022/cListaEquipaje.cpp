@@ -1,3 +1,4 @@
+
 #include "cListaEquipaje.h"
 
 cListaEquipaje::cListaEquipaje(unsigned int longitud, bool eliminar) { //la longitud es max
@@ -67,7 +68,6 @@ bool cListaEquipaje::eliminar(string idEquipaje) {
 		if (this->Equipajes[i] != NULL && this->Equipajes[i]->getIDequipaje() == idEquipaje) {
 			delete this->Equipajes[i];
 			this->Equipajes[i] = NULL;
-			CantidadActual--;
 			return true;
 		}
 	} return false;
@@ -122,18 +122,6 @@ int cListaEquipaje::buscar(cEquipaje* ptr_Equipaje) {
 }
 #pragma endregion
 
-#pragma region Metodos_Filtrar
-cEquipaje** cListaEquipaje::filtrar(float peso) {
-	cEquipaje** aux = NULL;
-	aux = new cEquipaje * [CantidadActual];
-
-	if (aux != NULL) {
-		for (int i = 0; i < CantidadActual; i++)
-			if (this->Equipajes[i] != NULL && this->Equipajes[i]->getPeso() == peso)
-				aux[i] = this->Equipajes[i];
-	}
-	return aux;
-}
 float cListaEquipaje::getpesototal()
 {
 	float pesototal = 0;
@@ -146,14 +134,15 @@ float cListaEquipaje::getpesototal()
 	return pesototal;
 	
 }
-#pragma endregion
 
 void cListaEquipaje::imprimir() {
-	cout << "Mi Listado: " << endl;
+	string text = "";
+
+	text += "\nLista Equipajes:";
 	for (unsigned int i = 0; i < CantidadActual; i++)
 		if (this->Equipajes[i] != NULL) {
-			cout << this->Equipajes[i]->getIDequipaje() << " " <<
-				this->Equipajes[i]->getPeso() << " " << endl;
+			text += Equipajes[i]->tostring();
 		}
-	cout << endl;
+
+	cout << text << endl;
 }

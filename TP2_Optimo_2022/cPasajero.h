@@ -46,8 +46,10 @@ class cPasajero {
         #pragma endregion
 
         #pragma region Operadores
-            void operator+(cEquipaje* equipaje);
-            void operator-(cEquipaje* equipaje);
+
+            bool operator+(cEquipaje* equipaje);
+            bool operator-(cEquipaje* equipaje);
+        
         #pragma endregion
 };
 

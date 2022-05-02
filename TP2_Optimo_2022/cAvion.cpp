@@ -65,11 +65,20 @@ void cAvion::setVolando(bool vuela){
 }
 
 string cAvion::tostring() {
-    return "";
+
+    string text = "";
+    text += "\nID Avion: " + this->id + " Capacidad Max: " + std::to_string(this->capacidad_maxima);
+    if (this->volando)
+        text += " El avion se encuentra volando";
+    else
+        text += " El avion se encuentra en tierra";
+    return text;
 }
 
 void cAvion::imprimir() {
-    return;
+    
+    cout << this->tostring() << endl;
+
 }
 
 ostream& operator<<(ostream& out, cAvion& avion)

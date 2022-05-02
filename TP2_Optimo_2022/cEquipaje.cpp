@@ -16,7 +16,7 @@ cEquipaje::~cEquipaje() {
 string cEquipaje::tostring() { 
     string text = "";
     text += "\nEquipaje ID:" + idEquipaje;
-    text += "\nPeso:" + std::to_string(peso);
+    text += " Peso:" + std::to_string(peso);
     return text;
 }
 
