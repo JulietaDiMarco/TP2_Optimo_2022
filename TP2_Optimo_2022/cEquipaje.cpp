@@ -11,7 +11,6 @@ cEquipaje::cEquipaje(float peso_):idEquipaje(to_string(contador_equipajes)) {
 }
 
 cEquipaje::~cEquipaje() {
-    contador_equipajes--;
 }
 
 string cEquipaje::tostring() { 

@@ -22,9 +22,7 @@ public:
 
         string getIdAeropuerto() { return this->idAeropuerto; }
         int getCapacidad() { return this->capacidad; }
-        unsigned int getAvionesEstacionados() { return aviones->getCantidadActual(); }
-
-        int avionesEstacionados();
+        
         bool QuitarAvion(cAvion* avion_);
         bool AgregarAvion(cAvion* avion_);
 

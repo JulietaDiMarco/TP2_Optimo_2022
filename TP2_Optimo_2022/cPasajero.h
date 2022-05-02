@@ -8,7 +8,7 @@ class cPasajero {
 
 public: 
     
-    cPasajero(string DNI_, string nombre_, string apellido_, unsigned int asiento_, unsigned int cantTotal, unsigned int cantActual);
+    cPasajero(string DNI_, string nombre_, string apellido_, string asiento_, cFecha* fn);
     ~cPasajero();
     
     string getDNI();
@@ -30,7 +30,7 @@ private:
     string DNI;
     string nombre;
     string apellido;
-    unsigned int asiento;
+    string asiento;
     cFecha* fecha_nacimiento;
     cListaEquipaje* valijas;
 
