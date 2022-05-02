@@ -15,8 +15,6 @@ public:
         bool darPermisoAterrizaje();
         bool darPermisoDespegue();
 
-        
-
         string tostring();    
         void imprimir();
 
@@ -32,7 +30,7 @@ public:
         /// </summary>
         /// <param name="fecha">Fecha para hacer la estadistica</param>
         /// <returns>Cantidad total de pasajeros</returns>
-        int CantPasajerosVolaron(cFecha* fecha);
+        int CantPasajerosVolaron(cFecha* cfecha);
         
         /// <summary>
         /// Detemina la cantidad de vuelos aterrizados en un

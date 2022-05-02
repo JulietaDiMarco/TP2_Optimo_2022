@@ -65,7 +65,7 @@ bool cListaPasajero::eliminar(string DNI) {
 
 bool cListaPasajero::eliminar(cPasajero* pasajero) {
 	for (int i = 0; i < CantidadActual; i++) {
-		if (this->pasajeros[i] != NULL && this->pasajeros[i] == pasajerito) {
+		if (this->pasajeros[i] != NULL && this->pasajeros[i] == pasajero) {
 			delete this->pasajeros[i];
 			this->pasajeros[i] = NULL;
 			return true;
@@ -97,7 +97,7 @@ cPasajero* cListaPasajero::quitar(string DNI) {
 
 cPasajero* cListaPasajero::quitar(cPasajero* pasajero) {
 	for (int i = 0; i < CantidadActual; i++) {
-		if (this->pasajeros[i] != NULL && this->pasajeros[i] == pasajerito) {
+		if (this->pasajeros[i] != NULL && this->pasajeros[i] == pasajero) {
 			cPasajero* Aux = this->pasajeros[i];
 			this->pasajeros[i] = NULL;
 			return Aux;
