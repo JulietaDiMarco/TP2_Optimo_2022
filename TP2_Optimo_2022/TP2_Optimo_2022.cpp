@@ -19,7 +19,8 @@ cVuelo** InicializarVuelos(cAvion** aviones);
 void BorrarVuelos(cVuelo** vuelos);
 void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes);
 void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
-
+void ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
+void BorrarFechas(cFecha** fechas);
 
 int main()
 {
@@ -60,70 +61,56 @@ int main()
         vuelos[2]->AgregarPasajero(pasajeros[i]);
     }
     
-    cFecha** MisFechas = new cFecha*[9];
+    cFecha** MisFechas = new cFecha*[N_FECHAS];
 
-    MisFechas[0] = new cFecha(8, 11, 2021, 13, 31); //Nov8a -- aterriza atrasado
-    MisFechas[1] = new cFecha(8, 11, 2021, 9, 31);  //Nov8p -- despega atrasado
-    MisFechas[2] = new cFecha(13, 12, 2021, 4, 6);  //Dec13p
-    MisFechas[3] = new cFecha(13, 12, 2021, 7, 6);  //Dec13a
-    MisFechas[4] = new cFecha(5, 6, 2021, 18, 40);  //Jun5p -- aterriza adelantado dos minutos
-    MisFechas[5] = new cFecha(5, 6, 2021, 20, 42);  //Jun5a --
-    MisFechas[6] = new cFecha(13, 7, 2021, 17, 50); //Jul13a -- aterriza atrasado por pocos minutos
-    MisFechas[7] = new cFecha(13, 7, 2021, 13, 42); //Jul13p
-
-    MisFechas[8] = NULL;
-
-    try {
-        vuelos[0]->RealizarAterrizaje(aeropuerto, MisFechas[0]);
-        vuelos[0]->RealizarDespegue(aeropuerto, MisFechas[1]);
-        vuelos[1]->RealizarDespegue(aeropuerto, MisFechas[2]);
-        vuelos[1]->RealizarAterrizaje(aeropuerto, MisFechas[3]);
-        vuelos[2]->RealizarDespegue(aeropuerto, MisFechas[4]);
-        vuelos[2]->RealizarAterrizaje(aeropuerto, MisFechas[5]);
-        vuelos[3]->RealizarAterrizaje(aeropuerto, MisFechas[6]);
-        vuelos[3]->RealizarDespegue(aeropuerto, MisFechas[7]);
+    for (int i = 0; i < N_FECHAS; i++) {
+        MisFechas[i] = NULL;
     }
-    catch (exception* e) {
-        cout << string(e->what()) << endl;
-        delete e;
+
+    *MisFechas[0] = cFecha(8, 11, 2021, 12, 54);
+    *MisFechas[1] = cFecha(8, 11, 2021, 8, 54);
+    *MisFechas[2] = cFecha(13, 12, 2021, 4, 6);
+    *MisFechas[3] = cFecha(13, 12, 2021, 7, 6);
+    *MisFechas[4] = cFecha(5, 6, 2021, 18, 42);
+    *MisFechas[5] = cFecha(5, 6, 2021, 20, 42);
+    *MisFechas[6] = cFecha(13, 7, 2021, 17, 42);
+    *MisFechas[7] = cFecha(13, 7, 2021, 13, 42);
+
+    for (int i = 0; i < N_FECHAS; i++) {
+        cout << "El dia " << &MisFechas[i] << " aterrizaron  " << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << ", despegaron "
+            << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << " vuelos y la cantidad de pasajeros que volaron ese dia fue de " << 
+            aeropuerto->CantPasajerosVolaron(MisFechas[i]) << endl;
+        
     }
-    
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[0] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[0]) << endl;
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[3] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[3]) << endl;
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[5] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[5]) << endl;
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[6] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[6]) << endl;
 
-    cout << "El dia " << &MisFechas[0] << "aterrizaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[0]) << "vuelos" << endl;
-    cout << "El dia " << &MisFechas[3] << "aterrizaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[3]) << "vuelos" << endl;
-    cout << "El dia " << &MisFechas[5] << "aterrizaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[5]) << "vuelos" << endl;
-    cout << "El dia " << &MisFechas[7] << "aterrizaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[7]) << "vuelos" << endl;
-
-
-    cout << "El dia " << &MisFechas[1] << "despegaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[1]) << "vuelos" << endl;
-    cout << "El dia " << &MisFechas[2] << "despegaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[2]) << "vuelos" << endl;
-    cout << "El dia " << &MisFechas[4] << "despegaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[4]) << "vuelos" << endl;
-    cout << "El dia " << &MisFechas[6] << "despegaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[6]) << "vuelos" << endl;
-
-    //fechas de prueba fuera de los vuelos que ya tengo
-    cFecha fecha1 = cFecha(9, 12, 2021);
-    cFecha fecha2 = cFecha(14, 3, 2021);
-                
-    cout << "El dia " << &fecha1 << "aterrizaron:" << aeropuerto->CantVuelosAterrizados(&fecha1);   //creo fecha de prueba para ver que no me devuelva nada en un dia que no hubo vuelos
-    cout << "El dia " << &fecha2 << "aterrizaron:" << aeropuerto->CantVuelosAterrizados(&fecha2);
-
-    cout << "El porcentaje de vuelos aterrizados en horario es de: " << aeropuerto->PorcentajeArribosEnHorario() << endl;
-    cout << "El porcentaje de vuelos despegados en horario es de: " << aeropuerto->PorcentajeDespeguesEnHorario() << endl;
+    cout << "El porcentaje de vuelos aterrizados en horario es de: " << (aeropuerto->PorcentajeArribosEnHorario()) << endl;
+    cout << "El porcentaje de vuelos despegados en horario es de: " << (aeropuerto->PorcentajeDespeguesEnHorario()) << endl;
 
     ///Libero memoria
-    //BorrarFechas(fechas);
     BorrarPasajeros(pasajeros);
     BorrarAviones(aviones);
     BorrarEquipajes(equipajes);
     BorrarVuelos(vuelos);
+    BorrarFechas(MisFechas);
 
     return 0;
 
 }
+
+void ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+    for (int i = 0; i < 5; i++)
+    {
+        try {
+            vuelos[rand() % N_VUELO]->RealizarDespegue(aeropuerto, fechas[rand() % N_FECHAS]);
+        }
+        catch (exception* e) {
+            cout << string(e->what()) << endl;
+            delete e;
+        }
+    }
+}
+
+
 
 void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
     for (int i = 0; i < 5; i++)
@@ -221,6 +208,13 @@ void BorrarVuelos(cVuelo** vuelos) {
     }
 
     delete[] vuelos;
+}
+
+void BorrarFechas(cFecha** fechas) {
+    for (int i = 0; i < N_FECHAS; i++) {
+        delete fechas[i];
+    }
+    delete[]fechas;
 }
 
 void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes) {
