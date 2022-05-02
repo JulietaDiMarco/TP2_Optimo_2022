@@ -35,8 +35,11 @@ public:
     bool EliminarPasajero(cPasajero* pasajero);
     bool CambiarPasajero(cPasajero* eliminado, cPasajero* agregado);
     
+    bool getEnHorario() { return en_horario; };
     cFecha* getPartida() { return partida; };
     cFecha* getAterrizaje() { return aterrizaje; };
+
+    friend ostream& operator<<(ostream& out, cVuelo& vuelo);
 
 private:
     const string nroVuelo;
@@ -49,7 +52,6 @@ private:
     cFecha* partida;
     cFecha* aterrizaje;
     bool en_horario;
-    
 };
 
 #endif //_CVUELO_H

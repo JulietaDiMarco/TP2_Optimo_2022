@@ -11,6 +11,7 @@ cAeropuerto::~cAeropuerto() {
     delete vuelos;
     delete aviones;
 }
+
 /**
  * chequea si esta volando doy permiso de aterrizaje y sino le doy permiso de despegar
  */
@@ -35,7 +36,6 @@ bool cAeropuerto::darPermisoDespegue() {
 /**
  * @return bool
  */
-
 string cAeropuerto::tostring() {
     return "";
 }
@@ -89,3 +89,34 @@ int cAeropuerto::CantVuelosDespegaron(cFecha* fecha)
             cont++;
     return cont;
 }
+
+float cAeropuerto::PorcentajeDespeguesEnHorario() {
+
+    int cont_enHorario = 0;
+
+    for (int i = 0; i < vuelos->getCantidadActual(); i++)
+    {
+        if ((*vuelos)[i]->getTramo() == eTramo::Partida
+            && (*vuelos)[i]->getEnHorario())
+            cont_enHorario++;
+    }
+    
+    return (float)cont_enHorario / (float)vuelos->getCantidadActual();
+
+}
+
+float cAeropuerto::PorcentajeArribosEnHorario() {
+
+    int cont_enHorario = 0;
+
+    for (int i = 0; i < vuelos->getCantidadActual(); i++)
+    {
+        if ((*vuelos)[i]->getTramo() == eTramo::Arribo
+            && (*vuelos)[i]->getEnHorario())
+            cont_enHorario++;
+    }
+
+    return (float)cont_enHorario / (float)vuelos->getCantidadActual();
+
+}
+

@@ -10,7 +10,7 @@ cPasajero::cPasajero(string DNI_, string nombre_, string apellido_, string asien
     this->apellido = apellido_;
     this->asiento = asiento_;
     this->fecha_nacimiento = new cFecha(*fn);
-    cListaEquipaje* valijas = new cListaEquipaje(MAX_EQUIPAJE, false); //le asigno por defecto una valija sola
+    valijas = new cListaEquipaje(MAX_EQUIPAJE, false); //le asigno por defecto una valija sola
 }
 
 cPasajero::~cPasajero() {
@@ -64,6 +64,17 @@ void cPasajero::imprimir() {
     string concatenado;
     concatenado = tostring();
     cout << concatenado << endl;
+}
+
+void cPasajero::operator+(cEquipaje* equipaje)
+{
+    agregarEquipaje(equipaje);
+ }
+
+void cPasajero::operator-(cEquipaje* equipaje)
+{
+    if (!(valijas->eliminar(equipaje)))
+        throw new exception("No se logro eliminar el equipaje al pasajero");
 }
 
 /**

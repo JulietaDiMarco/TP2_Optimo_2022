@@ -25,6 +25,7 @@ public:
     void setVolando(bool vuela);
     string getID() { return this->id; }
    
+    friend ostream& operator<<(ostream& out, cAvion& avion);
 
     string tostring();
     void imprimir();
