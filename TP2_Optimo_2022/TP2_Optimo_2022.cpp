@@ -5,7 +5,18 @@
 #include <string>
 #include "cAeropuerto.h"
 #include "cPasajero.h"
+
 using namespace std;
+//Declaro funciones
+
+cPasajero** InicializarPasajeros();
+void BorrarPasajeros(cPasajero** pasajeros);
+cAvion** InicializarAviones();
+void BorrarAviones(cAvion** aviones);
+cEquipaje** InicializarEquipajes();
+void BorrarEquipajes(cEquipaje** equipajes);
+cVuelo** InicializarVuelos(cAvion** aviones);
+void BorrarVuelos(cVuelo** vuelos);
 
 int main()
 {
@@ -19,12 +30,15 @@ int main()
     ///Inicializo aviones
     cAvion** aviones = InicializarAviones();
     ///Inicializo vuelos
+    cVuelo** vuelos = InicializarVuelos(aviones);
 
     
 
+    ///Libero memoria
     BorrarPasajeros(pasajeros);
     BorrarAviones(aviones);
     BorrarEquipajes(equipajes);
+    BorrarVuelos(vuelos);
 
 }
 
@@ -82,15 +96,31 @@ void BorrarEquipajes(cEquipaje** equipajes) {
     delete[] equipajes;
 }
 
-cVuelo** InicializoVuelos(cVuelo** vuelos, cAvion** aviones) {
-    cFecha Nov8 = cFecha(8, 11, 2021,12,54);
+cVuelo** InicializarVuelos(cAvion** aviones) {
+    cFecha Nov8a = cFecha(8, 11, 2021,12,54);
+    cFecha Nov8p = cFecha(8, 11, 2021, 8, 54);
     cFecha Dec13p = cFecha(13, 12, 2021,4,6);
     cFecha Dec13a = cFecha(13, 12, 2021, 7, 6);
     cFecha June5p = cFecha(5, 6, 2021,18,42);
     cFecha June5a = cFecha(5, 6, 2021, 20, 42);
+    cFecha July13a = cFecha(13, 7, 2021, 17, 42);
+    cFecha July13p = cFecha(5, 6, 2021, 13, 42);
     cVuelo** vuelos = new cVuelo * [4];
     vuelos[0] = new cVuelo(true, eDestino::IGUAZU, eTramo::Arribo, aviones[2], &Dec13p, &Dec13a);
-    vuelos[0] = new cVuelo(true, eDestino::BARILOCHE, eTramo::Arribo, aviones[0], &June5p, &June5a);
+    vuelos[1] = new cVuelo(true, eDestino::BARILOCHE, eTramo::Arribo, aviones[0], &June5p, &June5a);
 
+    vuelos[2] = new cVuelo(false, eDestino::SALTA, eTramo::Partida, aviones[1], &Nov8p, &Nov8a);
+    vuelos[3] = new cVuelo(false, eDestino::JUJUY, eTramo::Partida, aviones[0], &July13p, &July13a);
+    return vuelos;
+}
+
+void BorrarVuelos(cVuelo** vuelos) {
+
+    for (int i = 0; i < 4; i++)
+    {
+        delete vuelos[i];
+    }
+
+    delete[] vuelos;
 }
     
