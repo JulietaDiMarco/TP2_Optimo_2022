@@ -18,16 +18,14 @@ void BorrarEquipajes(cEquipaje** equipajes);
 cVuelo** InicializarVuelos(cAvion** aviones);
 void BorrarVuelos(cVuelo** vuelos);
 void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes);
-cFecha** InicializarFechas();
-void ProbarDespegarVuelos(cAeropuerto* aeropuerto,cVuelo** vuelos,cFecha** fechas);
 void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
-void BorrarFechas(cFecha** fechas);
+
 
 int main()
 {
     srand(time(NULL));
     ///Inicializo Fechas
-    cFecha** fechas = InicializarFechas();
+    //cFecha** fechas = InicializarFechas();
     ///Inicializo pasajeros
     cPasajero** pasajeros = InicializarPasajeros();
     ///Inicializo equipajes
@@ -106,7 +104,7 @@ int main()
     aeropuerto->PorcentajeDespeguesEnHorario();
 
     ///Libero memoria
-    BorrarFechas(fechas);
+    //BorrarFechas(fechas);
     BorrarPasajeros(pasajeros);
     BorrarAviones(aviones);
     BorrarEquipajes(equipajes);
