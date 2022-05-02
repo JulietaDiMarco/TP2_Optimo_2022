@@ -53,7 +53,7 @@ bool cPasajero::eliminarEquipaje(string id) {
 string cPasajero::tostring() {
     string text = "";
     text += "\nPasajero: " + this->nombre + " " + this->apellido;
-    text += "\nAsiento: " + this->asiento;
+    text += " Asiento: " + this->asiento;
     return text;
 }
 

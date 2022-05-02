@@ -1,3 +1,4 @@
+
 #include "cListaAvion.h"
 
 cListaAvion::cListaAvion(unsigned int longitud, bool eliminar) { //aca longitud debe ser max
@@ -128,14 +129,15 @@ int cListaAvion::buscar(cAvion* ptr_Avion) {
 #pragma endregion
 
 void cListaAvion::imprimir() {
-	cout << "Mi Listado: " << endl;
-	for (unsigned int i = 0; i < CantidadActual; i++) // necesito la cantidad total de aviones, hacer un metodo para eso
+	
+	string text = "";
+	
+	text += "\nLista Aviones:";
+	for (unsigned int i = 0; i < CantidadActual; i++)
 		if (this->Aviones[i] != NULL) {
-			cout << /*this->Aviones[i]->getCantidadActual() << */" " << //TODO: check
-				this->Aviones[i]->getPesoMaximo() << " " <<
-				this->Aviones[i]->getVolando() << " " <<
-				this->Aviones[i]->getID() << endl;
+			text += Aviones[i]->tostring();
 		}
-	cout << endl;
+
+	cout << text << endl;
 }
 

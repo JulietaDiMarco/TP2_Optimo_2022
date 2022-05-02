@@ -1,5 +1,5 @@
-#include "cListaPasajero.h"
 
+#include "cListaPasajero.h"
 
 cListaPasajero::cListaPasajero(unsigned int longitud, bool eliminar) {
 	this->eliminarNodos = eliminar;
@@ -31,6 +31,7 @@ bool cListaPasajero::agregar(cPasajero* nuevoPasajero) { //TODO: chequear que en
 }
 
 #pragma region Metodos_Modificar
+
 bool cListaPasajero::modificar(int pos, cPasajero* nuevoPasajero) {
 	if (pos >= 0 && this->pasajeros[pos] != NULL) {
 		cPasajero* Aux = this->pasajeros[pos];
@@ -43,6 +44,7 @@ bool cListaPasajero::modificar(int pos, cPasajero* nuevoPasajero) {
 #pragma endregion
 
 #pragma region Metodos_Eliminar
+
 bool cListaPasajero::eliminar(int pos) {
 	if (pos >= 0 && this->pasajeros[pos] != NULL) {
 		delete this->pasajeros[pos];
@@ -61,7 +63,7 @@ bool cListaPasajero::eliminar(string DNI) {
 	} return false;
 }
 
-bool cListaPasajero::eliminar(cPasajero* pasajerito) {
+bool cListaPasajero::eliminar(cPasajero* pasajero) {
 	for (int i = 0; i < CantidadActual; i++) {
 		if (this->pasajeros[i] != NULL && this->pasajeros[i] == pasajerito) {
 			delete this->pasajeros[i];
@@ -70,9 +72,11 @@ bool cListaPasajero::eliminar(cPasajero* pasajerito) {
 		}
 	} return false;
 }
+
 #pragma endregion
 
 #pragma region Metodos_Quitar
+
 cPasajero* cListaPasajero::quitar(int pos) {
 	if (pos >= 0 && this->pasajeros[pos] != NULL) {
 		cPasajero* Aux = this->pasajeros[pos];
@@ -91,7 +95,7 @@ cPasajero* cListaPasajero::quitar(string DNI) {
 	} return NULL;
 }
 
-cPasajero* cListaPasajero::quitar(cPasajero* pasajerito) {
+cPasajero* cListaPasajero::quitar(cPasajero* pasajero) {
 	for (int i = 0; i < CantidadActual; i++) {
 		if (this->pasajeros[i] != NULL && this->pasajeros[i] == pasajerito) {
 			cPasajero* Aux = this->pasajeros[i];
@@ -100,9 +104,11 @@ cPasajero* cListaPasajero::quitar(cPasajero* pasajerito) {
 		}
 	} return NULL;
 }
+
 #pragma endregion
 
 #pragma region Metodos_Buscar
+
 int cListaPasajero::buscar(string DNI) {
 	
 	for (int i = 0; i < CantidadActual; i++)
@@ -122,18 +128,20 @@ int cListaPasajero::buscar(cPasajero* ptr_Pasajero) {
 			return i;
 	return -1;
 }
+
 #pragma endregion
 
-
 void cListaPasajero::imprimir() {
-	cout << "Mi Listado: " << endl;
+
+	string text = "";
+
+	text += "\nLista Pasajeros:";
 	for (unsigned int i = 0; i < CantidadActual; i++)
 		if (this->pasajeros[i] != NULL) {
-			cout << this->pasajeros[i]->getNombre() << " " <<
-				this->pasajeros[i]->getApellido() << " " <<
-				this->pasajeros[i]->getDNI() << " " << endl;
-			}
-	cout << endl;
+			text += pasajeros[i]->tostring();
+		}
+
+	cout << text << endl;
 }
 
 unsigned int cListaPasajero::getCantidadActual()

@@ -142,14 +142,15 @@ int cListaVuelo::buscar(cVuelo* ptr_Vuelo) {
 
 void cListaVuelo::imprimir() {
 	string text = "";
-	text += "\nMi Listado:";
+
+	text += "\nLista Vuelos:";
 	for (unsigned int i = 0; i < CantidadActual; i++)
 		if (this->Vuelos[i] != NULL) {
-			text += "\nNro Vuelo: " + Vuelos[i]->get_nroVuelo();
-			text += "| Destino: " + eDestinoToString(Vuelos[i]->getDestino());
-			text += "| Tramo: " + eTramoToString(Vuelos[i]->getTramo());
+			text += Vuelos[i]->tostring();
 		}
+
 	cout << text << endl;
+
 }
 
 cVuelo* cListaVuelo::operator[](int pos)
