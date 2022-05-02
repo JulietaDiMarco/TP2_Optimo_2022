@@ -33,19 +33,23 @@ unsigned int cVuelo::getCantidadPasajeros()
 
 bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto, cFecha* fecha)
 {
-    try {
-        avion->chequearCargaMaxima(this);
-        avion->chequearCapacidadMaxima(this);
+    if (!avion->volando && tramo == eTramo::Partida) {
+        try {
+            avion->chequearCargaMaxima(this);
+            avion->chequearCapacidadMaxima(this);
+        }
+        catch (exception* e) {
+            delete e;
+            return false;
+        }
+        avion->pedirPermisoDespegue(aeropuerto); //TODO try catch
+        avion->despegar();
+        verificarhorario(partida, fecha);
+        aeropuerto->QuitarAvion(avion);
+        return true;
     }
-    catch (exception* e) {
-        delete e;
-        return false;
-    }
-    avion->pedirPermisoDespegue(aeropuerto); //TODO try catch
-    avion->despegar();
-    verificarhorario(partida,fecha);
-    aeropuerto->QuitarAvion(avion);
-    return true;
+    else
+        throw new exception("El vuelo ya despegó o es un arribo.");
 }
 
 void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
@@ -55,17 +59,21 @@ void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
 
 bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)
 {
-    try {
-        avion->pedirPermisoAterrizaje(aeropuerto);
+    if (avion->volando && tramo == eTramo::Arribo) {
+        try {
+            avion->pedirPermisoAterrizaje(aeropuerto);
+        }
+        catch (exception* e) {
+            delete e;
+            return false;
+        }
+        avion->aterrizar();
+        verificarhorario(aterrizaje, fecha);
+        aeropuerto->AgregarAvion(avion);
+        return true;
     }
-    catch (exception* e) {
-        delete e;
-        return false;
-    }
-    avion->aterrizar();
-    verificarhorario(aterrizaje, fecha);
-    aeropuerto->AgregarAvion(avion);
-    return true;
+    else
+        throw new exception("El vuelo ya aterrizó o es una partida.");
 }
 
 string cVuelo::tostring() {

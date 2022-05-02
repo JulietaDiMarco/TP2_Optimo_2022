@@ -3,6 +3,8 @@
 
 #include "cAeropuerto.h"
 #include "cPasajero.h"
+#define N_FECHAS 8
+#define N_VUELO 4
 
 using namespace std;
 //Declaro funciones
@@ -16,12 +18,16 @@ void BorrarEquipajes(cEquipaje** equipajes);
 cVuelo** InicializarVuelos(cAvion** aviones);
 void BorrarVuelos(cVuelo** vuelos);
 void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes);
+cFecha** InicializarFechas();
+void ProbarDespegarVuelos(cAeropuerto* aeropuerto,cVuelo** vuelos,cFecha** fechas);
+void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
+void BorrarFechas(cFecha** fechas);
 
 int main()
 {
     srand(time(NULL));
     ///Inicializo Fechas
-  
+    cFecha** fechas = InicializarFechas();
     ///Inicializo pasajeros
     cPasajero** pasajeros = InicializarPasajeros();
     ///Inicializo equipajes
@@ -56,14 +62,70 @@ int main()
         vuelos[2]->AgregarPasajero(pasajeros[i]);
     }
     
-    //vuelos[0]->RealizarAterrizaje()
-
+    ProbarDespegarVuelos(aeropuerto, vuelos, fechas);
+    ProbarAterrizarVuelos(aeropuerto, vuelos, fechas);
+    
+    cFecha* fecharand = fechas[rand() % N_FECHAS];
+    cout << "Cantidad de pasajeros que volaron el  "<< fecharand->To_string() <<": "
+        << aeropuerto->CantPasajerosVolaron(fecharand)<< endl;
+    cout << "Cantidad de vuelos aterrizados el  " << fecharand->To_string() << ": "
+        << aeropuerto->CantVuelosAterrizados(fecharand)<< endl;
+    cout << "Cantidad de vuelos despegados el  " << fecharand->To_string() << ": "
+        << aeropuerto->CantVuelosDespegaron(fecharand) << endl;
+    cout << "Porcentaje despegues en horario: "<< aeropuerto->PorcentajeArribosEnHorario()<< endl;
+    cout<< "Porcentaje despegues en horario: "<< aeropuerto->PorcentajeDespeguesEnHorario()<< endl;
     ///Libero memoria
+    BorrarFechas(fechas);
     BorrarPasajeros(pasajeros);
     BorrarAviones(aviones);
     BorrarEquipajes(equipajes);
     BorrarVuelos(vuelos);
 
+}
+
+cFecha** InicializarFechas() {
+    cFecha** fechas = new cFecha * [N_FECHAS];
+    for (int i = 0; i < N_FECHAS; i++)
+    {
+        fechas[i] = new cFecha(rand() % 28 + 1, rand() % 11 + 1, 2021, rand() % 24, rand() % 59);
+    }
+    return fechas;
+}
+
+void BorrarFechas(cFecha** fechas) {
+    for (int i = 0; i < N_FECHAS; i++)
+    {
+        delete fechas[i];
+    }
+
+    delete[] fechas;
+}
+
+void ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+    for (int i = 0; i < 5; i++)
+    {
+        int k = rand() % N_VUELO;
+        try {
+            vuelos[k]->RealizarDespegue(aeropuerto, vuelos[k]->getPartida());
+        }
+        catch (exception* e) {
+            cout << string(e->what()) << endl;
+            delete e;
+        }
+    }
+}
+
+void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+    for (int i = 0; i < 5; i++)
+    {
+        try {
+            vuelos[rand() % N_VUELO]->RealizarAterrizaje(aeropuerto, fechas[rand() % N_FECHAS]);
+        }
+        catch (exception* e) {
+            cout << string(e->what()) << endl;
+            delete e;
+        }
+    }
 }
 
 cPasajero** InicializarPasajeros() {
@@ -133,7 +195,7 @@ cVuelo** InicializarVuelos(cAvion** aviones) {
     cFecha June5a = cFecha(5, 6, 2021, 20, 42);
     cFecha July13a = cFecha(13, 7, 2021, 17, 42);
     cFecha July13p = cFecha(5, 6, 2021, 13, 42);
-    cVuelo** vuelos = new cVuelo * [4];
+    cVuelo** vuelos = new cVuelo * [N_VUELO];
     vuelos[0] = new cVuelo(true, eDestino::IGUAZU, eTramo::Arribo, aviones[2], &Dec13p, &Dec13a);
     vuelos[1] = new cVuelo(true, eDestino::BARILOCHE, eTramo::Arribo, aviones[0], &June5p, &June5a);
     vuelos[2] = new cVuelo(false, eDestino::SALTA, eTramo::Partida, aviones[1], &Nov8p, &Nov8a);
@@ -143,7 +205,7 @@ cVuelo** InicializarVuelos(cAvion** aviones) {
 
 void BorrarVuelos(cVuelo** vuelos) {
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < N_VUELO; i++)
     {
         delete vuelos[i];
     }
