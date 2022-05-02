@@ -84,14 +84,14 @@ int main()
         vuelos[3]->RealizarDespegue(aeropuerto, MisFechas[7]);
     }
     catch (exception* e) {
+        cout << string(e->what()) << endl;
         delete e;
-        return false;
     }
     
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[0] << " fue de " << aeropuerto->CantPasajerosVolaron(&MisFechas[0]) << endl;
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[3] << " fue de " << aeropuerto->CantPasajerosVolaron(&MisFechas[3]) << endl;
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[5] << " fue de " << aeropuerto->CantPasajerosVolaron(&MisFechas[5]) << endl;
-    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[6] << " fue de " << aeropuerto->CantPasajerosVolaron(&MisFechas[6]) << endl;
+    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[0] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[0]) << endl;
+    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[3] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[3]) << endl;
+    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[5] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[5]) << endl;
+    cout << "La cantidad de pasajeros que volaron el dia " << &MisFechas[6] << " fue de " << aeropuerto->CantPasajerosVolaron(MisFechas[6]) << endl;
 
     cout << "El dia " << &MisFechas[0] << "aterrizaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[0]) << "vuelos" << endl;
     cout << "El dia " << &MisFechas[3] << "aterrizaron: " << aeropuerto->CantVuelosAterrizados(MisFechas[3]) << "vuelos" << endl;
