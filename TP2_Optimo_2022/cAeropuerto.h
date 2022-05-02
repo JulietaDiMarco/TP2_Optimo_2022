@@ -15,7 +15,7 @@ public:
         bool darPermisoAterrizaje();
         bool darPermisoDespegue();
 
-        bool chequearCapacidadAvion(cAvion* a, cVuelo* v);
+        
 
         string tostring();    
         void imprimir();
@@ -25,7 +25,7 @@ public:
         
         bool QuitarAvion(cAvion* avion_);
         bool AgregarAvion(cAvion* avion_);
-
+        bool AgregarVuelo(cVuelo* vuelo_);
         /// <summary>
         /// Determina la cantidad total de pasajeros que volaron en
         /// una determina fecha.

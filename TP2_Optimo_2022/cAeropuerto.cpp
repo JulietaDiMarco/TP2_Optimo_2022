@@ -60,6 +60,11 @@ bool cAeropuerto::AgregarAvion(cAvion* avion_)
     return aviones->agregar(avion_); //TODO check
 }
 
+bool cAeropuerto::AgregarVuelo(cVuelo* vuelo_)
+{
+    return vuelos->agregar(vuelo_);
+}
+
 int cAeropuerto::CantPasajerosVolaron(cFecha* fecha)
 {
     int acumulador_pasajeros = 0;
