@@ -93,14 +93,16 @@ int main()
 
 
     for (int i = 0; i < N_FECHAS; i++) {
-        cout << "El dia " << MisFechas[i]->To_string() << " aterrizaron  " << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << ", despegaron "
-            << aeropuerto->CantVuelosDespegaron(MisFechas[i]) << " vuelos y la cantidad de pasajeros que volaron ese dia fue de " << 
-            aeropuerto->CantPasajerosVolaron(MisFechas[i]) << endl;
-        
+        if (MisFechas[i] != MisFechas[i + 1]) {
+            cout << "El dia " << MisFechas[i]->To_string() << " aterrizaron  " << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << ", despegaron "
+                << aeropuerto->CantVuelosDespegaron(MisFechas[i]) << " vuelos y la cantidad de pasajeros que volaron ese dia fue de " <<
+                aeropuerto->CantPasajerosVolaron(MisFechas[i]) << endl;
+        }
+                
     }
 
-    cout << "El porcentaje de vuelos aterrizados en horario es del " << (aeropuerto->PorcentajeArribosEnHorario()/aterrizados) << "%" << endl;
-    cout << "El porcentaje de vuelos despegados en horario es del " << (aeropuerto->PorcentajeDespeguesEnHorario()/despegados) << "%" << endl;
+    cout << "El porcentaje de vuelos aterrizados en horario es del " << aeropuerto->PorcentajeArribosEnHorario() << "%" << endl;
+    cout << "El porcentaje de vuelos despegados en horario es del " << aeropuerto->PorcentajeDespeguesEnHorario() << "%" << endl;
 
     ///Libero memoria
     BorrarPasajeros(pasajeros);

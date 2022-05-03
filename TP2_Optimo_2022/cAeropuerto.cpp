@@ -108,11 +108,11 @@ float cAeropuerto::PorcentajeDespeguesEnHorario() {
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
     {
         if ((*vuelos)[i]->getTramo() == eTramo::Partida
-            && (*vuelos)[i]->getEnHorario())
+            && !(*vuelos)[i]->getEnHorario())
             cont_enHorario++;
     }
     
-    return (float)cont_enHorario / (float)vuelos->getCantidadActual();
+    return ((float)cont_enHorario / (float)vuelos->getCantidadActual()) * 100;
 
 }
 
@@ -123,15 +123,14 @@ float cAeropuerto::PorcentajeArribosEnHorario() {
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
     {
         if ((*vuelos)[i]->getTramo() == eTramo::Arribo
-           && (*vuelos)[i]->getEnHorario())
+           && !(*vuelos)[i]->getEnHorario())
         {
             cont_enHorario++;
         }
     }
 
-    float porcentaje = (cont_enHorario) / (vuelos->getCantidadActual());
 
-    return (porcentaje * 100);
+    return ((float)cont_enHorario / (float)vuelos->getCantidadActual()) * 100;
 
 }
 

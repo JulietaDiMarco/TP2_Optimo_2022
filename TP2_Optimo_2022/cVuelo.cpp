@@ -54,7 +54,7 @@ bool cVuelo::RealizarDespegue(cAeropuerto* aeropuerto, cFecha* fecha)
 
 void cVuelo::verificarhorario(cFecha* mi_hora, cFecha* fecha) {
     if (*fecha < *mi_hora || *fecha == *mi_hora)
-        en_horario = true;
+        setEnHorario(true);
 }
 
 bool cVuelo::RealizarAterrizaje(cAeropuerto* aeropuerto, cFecha* fecha)

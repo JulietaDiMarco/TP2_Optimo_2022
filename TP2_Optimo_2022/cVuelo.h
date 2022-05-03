@@ -46,6 +46,10 @@ class cVuelo {
         
         cFecha* getAterrizaje() { return aterrizaje; };
         
+        void setEnHorario(bool enHorario) {
+            this->en_horario = enHorario;
+        }
+
         /// <summary>
         /// Retorna el peso total del equipaje que transporta el avion
         /// </summary>
