@@ -1,10 +1,11 @@
 
+
 #include "cAeropuerto.h"
 
 cAeropuerto::cAeropuerto(string idAeropuerto_, int capacidad_):idAeropuerto(idAeropuerto_) {
     this->capacidad = capacidad_;
     aviones = new cListaAvion(capacidad, false);
-    vuelos = new cListaVuelo(1, false);
+    vuelos = new cListaVuelo(capacidad, false);
 }
 
 cAeropuerto::~cAeropuerto() {
@@ -38,6 +39,7 @@ bool cAeropuerto::darPermisoDespegue() {
  */
 string cAeropuerto::tostring() {
     return "";
+
 }
 
 /**
@@ -57,8 +59,6 @@ bool cAeropuerto::QuitarAvion(cAvion* avion_)
 
 bool cAeropuerto::AgregarAvion(cAvion* avion_)
 {
-    //aviones->agregar(avion_);
-    //aviones->getCantidadActual() + 1;
     return aviones->agregar(avion_); //TODO check
 }
 
@@ -119,11 +119,15 @@ float cAeropuerto::PorcentajeArribosEnHorario() {
     for (int i = 0; i < vuelos->getCantidadActual(); i++)
     {
         if ((*vuelos)[i]->getTramo() == eTramo::Arribo
-            && (*vuelos)[i]->getEnHorario())
+           && (*vuelos)[i]->getEnHorario())
+        {
             cont_enHorario++;
+        }
     }
 
-    return (float)cont_enHorario / (float)vuelos->getCantidadActual();
+    float porcentaje = (cont_enHorario) / (vuelos->getCantidadActual());
+
+    return (porcentaje * 100);
 
 }
 

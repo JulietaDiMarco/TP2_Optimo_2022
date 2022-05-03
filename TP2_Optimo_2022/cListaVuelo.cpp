@@ -20,12 +20,14 @@ cListaVuelo::~cListaVuelo() {
 }
 
 bool cListaVuelo::agregar(cVuelo* nuevoVuelo) {
-	for (unsigned int i = 0; i < CantidadActual; i++) {
-		if (this->Vuelos[i] == NULL) {
-			this->Vuelos[i] = nuevoVuelo;
-			return true;
+	bool agregado = false;
+	for (unsigned int i = 0; i < CantidadMaxima; i++) {
+		if (this->Vuelos[i] == NULL && (buscar(nuevoVuelo->get_nroVuelo()) == -1)) {
+			Vuelos[i] = nuevoVuelo;
+			CantidadActual++;
+			agregado = true;
 		}
-	} return false;
+	} return agregado;
 }
 
 #pragma region Metodos_Modificar

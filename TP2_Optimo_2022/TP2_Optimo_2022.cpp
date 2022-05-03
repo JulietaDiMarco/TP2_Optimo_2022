@@ -18,8 +18,8 @@ void BorrarEquipajes(cEquipaje** equipajes);
 cVuelo** InicializarVuelos(cAvion** aviones);
 void BorrarVuelos(cVuelo** vuelos);
 void AgregarValijas(cPasajero** pasajeros, cEquipaje** equipajes);
-void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
-void ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
+int ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
+int ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas);
 void BorrarFechas(cFecha** fechas);
 
 int main()
@@ -41,6 +41,7 @@ int main()
     ///Inicializo Aeroparque
     cAeropuerto* aeropuerto = new cAeropuerto("AEP", 4);
 
+    
     //Agrego los vuelos a aeropuerto
     for (int i = 0; i <3; i++)
     {
@@ -61,7 +62,7 @@ int main()
     for (int i = 0; i < 3; i++)
     {
         vuelos[0]->AgregarPasajero(pasajeros[i]);
-        vuelos[2]->AgregarPasajero(pasajeros[i]);
+        vuelos[3]->AgregarPasajero(pasajeros[i]);
     }
     
    cFecha** MisFechas = new cFecha*[N_FECHAS];
@@ -71,12 +72,12 @@ int main()
     }
     cFecha* fecha1 = new cFecha(8, 11, 2021, 12, 54);
     cFecha* fecha2 = new cFecha(8, 11, 2021, 8, 54);
-    cFecha* fecha3 = new cFecha(13, 12, 2021, 4, 6);
-    cFecha* fecha4 = new cFecha(13, 12, 2021, 7, 6);
+    cFecha* fecha3 = new cFecha(13, 12, 2021, 7, 6);
+    cFecha* fecha4 = new cFecha(13, 12, 2021, 4, 6);
     cFecha* fecha5 = new cFecha(5, 6, 2021, 18, 42);
     cFecha* fecha6 = new cFecha(5, 6, 2021, 20, 42);
-    cFecha* fecha7 = new cFecha(13, 7, 2021, 17, 42);
-    cFecha* fecha8 = new cFecha(13, 7, 2021, 13, 42);
+    cFecha* fecha7 = new cFecha(13, 7, 2021, 13, 42);
+    cFecha* fecha8 = new cFecha(13, 7, 2021, 17, 42);
 
     MisFechas[0] = fecha1;
     MisFechas[1] = fecha2;
@@ -87,9 +88,8 @@ int main()
     MisFechas[6] = fecha7;
     MisFechas[7] = fecha8;
 
-    for (int i = 0; i < N_FECHAS; i++) {
-        MisFechas[i]->ImprimirFecha();
-    }
+    int despegados = ProbarDespegarVuelos(aeropuerto, vuelos, MisFechas);
+    int aterrizados = ProbarAterrizarVuelos(aeropuerto, vuelos, MisFechas);
 
 
     for (int i = 0; i < N_FECHAS; i++) {
@@ -99,8 +99,8 @@ int main()
         
     }
 
-    cout << "El porcentaje de vuelos aterrizados en horario es de: " << (aeropuerto->PorcentajeArribosEnHorario()) << endl;
-    cout << "El porcentaje de vuelos despegados en horario es de: " << (aeropuerto->PorcentajeDespeguesEnHorario()) << endl;
+    cout << "El porcentaje de vuelos aterrizados en horario es del " << (aeropuerto->PorcentajeArribosEnHorario()/aterrizados) << "%" << endl;
+    cout << "El porcentaje de vuelos despegados en horario es del " << (aeropuerto->PorcentajeDespeguesEnHorario()/despegados) << "%" << endl;
 
     ///Libero memoria
     BorrarPasajeros(pasajeros);
@@ -113,7 +113,9 @@ int main()
 
 }
 
-void ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+int ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+   
+    int cont = 0;
     for (int i = 0; i < 5; i++)
     {
         try {
@@ -122,13 +124,13 @@ void ProbarDespegarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fec
         catch (exception* e) {
             cout << string(e->what()) << endl;
             delete e;
-        }
+        } cont++;
     }
+    return cont;
 }
 
-
-
-void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+int ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fechas) {
+    int cont = 0;
     for (int i = 0; i < 5; i++)
     {
         try {
@@ -138,7 +140,9 @@ void ProbarAterrizarVuelos(cAeropuerto* aeropuerto, cVuelo** vuelos, cFecha** fe
             cout << string(e->what()) << endl;
             delete e;
         }
+        cont++;
     }
+    return cont;
 }
 
 cPasajero** InicializarPasajeros() {
@@ -149,6 +153,7 @@ cPasajero** InicializarPasajeros() {
     pasajeros[0] = new cPasajero("41258963", "Federico", "Serra", "5F", &Nov8);
     pasajeros[1] = new cPasajero("4455963", "Carolina", "Serra", "7F", &Dec13);
     pasajeros[2] = new cPasajero("61258963", "Tomas", "Serra", "5F", &June5);
+
     return pasajeros;
 }
 
@@ -202,13 +207,13 @@ void BorrarEquipajes(cEquipaje** equipajes) {
 }
 
 cVuelo** InicializarVuelos(cAvion** aviones) {
-    cFecha Nov8a = cFecha(8, 11, 2021,12,54);
+    cFecha Nov8a = cFecha(8, 11, 2021, 12, 54);
     cFecha Nov8p = cFecha(8, 11, 2021, 8, 54);
-    cFecha Dec13p = cFecha(13, 12, 2021,4,6);
-    cFecha Dec13a = cFecha(13, 12, 2021, 7, 6);
-    cFecha June5p = cFecha(5, 6, 2021,18,42);
+    cFecha Dec13p = cFecha(13, 12, 2021, 6, 6);
+    cFecha Dec13a = cFecha(13, 12, 2021, 9, 6);
+    cFecha June5p = cFecha(5, 6, 2021, 18, 42);
     cFecha June5a = cFecha(5, 6, 2021, 20, 42);
-    cFecha July13a = cFecha(13, 7, 2021, 17, 42);
+    cFecha July13a = cFecha(13, 7, 2021, 17, 45);
     cFecha July13p = cFecha(13, 7, 2021, 13, 42);
     cVuelo** vuelos = new cVuelo * [4];
     vuelos[0] = new cVuelo(true, eDestino::IGUAZU, eTramo::Arribo, aviones[2], &Dec13p, &Dec13a);

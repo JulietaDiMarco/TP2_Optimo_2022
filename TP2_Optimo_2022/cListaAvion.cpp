@@ -6,8 +6,10 @@ cListaAvion::cListaAvion(unsigned int longitud, bool eliminar) { //aca longitud 
 	this->Aviones = new cAvion * [longitud];
 	this->CantidadActual = 0;
 	this->CantidadMaxima = longitud;
-	for (unsigned int i = 0; i < CantidadActual; i++)
+	for (unsigned int i = 0; i < CantidadMaxima; i++)
+	{
 		this->Aviones[i] = NULL;
+	}
 }
 
 cListaAvion::~cListaAvion() {
@@ -21,14 +23,15 @@ cListaAvion::~cListaAvion() {
 }
 
 bool cListaAvion::agregar(cAvion* nuevoAvion) {
+	bool agregado = false;
 	for (unsigned int i = 0; i < CantidadMaxima; i++) {
-		if (this->Aviones[i] == NULL) {
-			this->Aviones[i] = nuevoAvion;
+		if (this->Aviones[i] == NULL && (buscar(nuevoAvion->getID()) == -1)) {
+			Aviones[i] = nuevoAvion;
 			CantidadActual++;
-			return true;
+			agregado = true;
 		}
-	} 
-	return false;
+	} return agregado;
+
 }
 
 #pragma region Metodos_Modificar

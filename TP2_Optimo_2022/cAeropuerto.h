@@ -49,7 +49,6 @@ public:
         int CantVuelosDespegaron(cFecha* fecha);
 
         float PorcentajeDespeguesEnHorario();
-
         float PorcentajeArribosEnHorario();
 
     private: 
