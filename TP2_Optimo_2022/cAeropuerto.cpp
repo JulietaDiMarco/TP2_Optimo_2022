@@ -57,6 +57,8 @@ bool cAeropuerto::QuitarAvion(cAvion* avion_)
 
 bool cAeropuerto::AgregarAvion(cAvion* avion_)
 {
+    //aviones->agregar(avion_);
+    //aviones->getCantidadActual() + 1;
     return aviones->agregar(avion_); //TODO check
 }
 

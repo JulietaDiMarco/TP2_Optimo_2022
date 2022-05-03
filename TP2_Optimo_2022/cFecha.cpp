@@ -115,8 +115,8 @@ bool cFecha::EstaAtrasado(cFecha* fecha_estimada, cFecha* fecha_vuelo)
 
 bool cFecha::MismoDia(cFecha* fecha1, cFecha* fecha2)
 {
-	if (fecha1->fecha.tm_wday == fecha2->fecha.tm_wday)
+	if (fecha1->fecha.tm_year == fecha2->fecha.tm_year && fecha1->fecha.tm_mday == fecha2->fecha.tm_mday && fecha1->fecha.tm_mon == fecha2->fecha.tm_mon) {
 		return true;
-	else
+	}else
 		return false;
 }

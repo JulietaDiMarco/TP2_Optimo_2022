@@ -27,7 +27,8 @@ bool cListaAvion::agregar(cAvion* nuevoAvion) {
 			CantidadActual++;
 			return true;
 		}
-	} return false;
+	} 
+	return false;
 }
 
 #pragma region Metodos_Modificar

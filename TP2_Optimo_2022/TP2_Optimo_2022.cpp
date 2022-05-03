@@ -32,18 +32,21 @@ int main()
     ///Inicializo equipajes
     cEquipaje** equipajes = InicializarEquipajes();
     ///Inicializo aviones
+   // cAvion** aviones_ = new cAvion * [4];
+
     cAvion** aviones = InicializarAviones();
     ///Inicializo vuelos
     cVuelo** vuelos = InicializarVuelos(aviones);
-    ///Inicializo Aeroparque
 
-    cAeropuerto* aeropuerto = new cAeropuerto("AEP", 2);
+    ///Inicializo Aeroparque
+    cAeropuerto* aeropuerto = new cAeropuerto("AEP", 4);
 
     //Agrego los vuelos a aeropuerto
     for (int i = 0; i <3; i++)
     {
         aeropuerto->AgregarAvion(aviones[i]);
     }
+
 
     for (int i = 0; i < 4; i++)
     {
@@ -67,7 +70,6 @@ int main()
        MisFechas[i] = NULL;
     }
     cFecha* fecha1 = new cFecha(8, 11, 2021, 12, 54);
-    cout << "hola soy fecha 1" << &fecha1 << endl;
     cFecha* fecha2 = new cFecha(8, 11, 2021, 8, 54);
     cFecha* fecha3 = new cFecha(13, 12, 2021, 4, 6);
     cFecha* fecha4 = new cFecha(13, 12, 2021, 7, 6);
@@ -92,7 +94,7 @@ int main()
 
     for (int i = 0; i < N_FECHAS; i++) {
         cout << "El dia " << MisFechas[i]->To_string() << " aterrizaron  " << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << ", despegaron "
-            << aeropuerto->CantVuelosAterrizados(MisFechas[i]) << " vuelos y la cantidad de pasajeros que volaron ese dia fue de " << 
+            << aeropuerto->CantVuelosDespegaron(MisFechas[i]) << " vuelos y la cantidad de pasajeros que volaron ese dia fue de " << 
             aeropuerto->CantPasajerosVolaron(MisFechas[i]) << endl;
         
     }
@@ -162,9 +164,11 @@ void BorrarPasajeros(cPasajero** pasajeros) {
 
 cAvion** InicializarAviones() {
     cAvion** aviones = new cAvion * [3];
+
     aviones[0] = new cAvion(2500, 120, false);
     aviones[1] = new cAvion(2250, 135, true);
-    aviones[2] = new cAvion(2123, 110, false);
+    aviones[2] = new cAvion(2250, 135, true);
+
     return aviones;
 } 
 
