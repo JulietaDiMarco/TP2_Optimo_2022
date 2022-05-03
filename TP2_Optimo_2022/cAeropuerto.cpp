@@ -38,14 +38,18 @@ bool cAeropuerto::darPermisoDespegue() {
  * @return bool
  */
 string cAeropuerto::tostring() {
-    return "";
+    string concat = "";
+    concat = "ID Aeropuerto: " + getIdAeropuerto();
+    concat += "\nCapacidad Aeropuerto: " + to_string(getCapacidad());
 
+    return concat;
 }
 
 /**
  * @return void
  */
 void cAeropuerto::imprimir() {
+    cout << tostring() << endl;
     return;
 }
 
